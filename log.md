@@ -23,6 +23,8 @@
      ⭐8.2 JavaScript的作用是什么？
      8.3 实际案例说明JavaScript的功能
      ⭐8.4 JavaScript其他很酷的地方
+✅ 9. 链接JavaScript文件
+     9.1 文件中JavaScript如何实践？
 
 
 
