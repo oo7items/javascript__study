@@ -1,4 +1,5 @@
-// Public
+/** Public
+
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
@@ -45,6 +46,9 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
   });
 };
 
+ */
+
+
 /************** 异步JavaScript */
 /*
   1. 异步JavaScript的目标, 基本上是处理长时间运行的任务, 基本在后台运行
@@ -89,38 +93,38 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 
 /************** 我们第一个AJAX调用：XMLHttpRequest */
 
-// const getCountryDate = function (country) {
-//   // 创建XMLHttp请求对象
-//   const request = new XMLHttpRequest();
-//   // 请求服务器数据
-//   request.open('GET', `https://restcountries.com/v2/name/${country}`);
-//   // 服务器发送请求数据
-//   request.send();
+const getCountryDate = function (country) {
+  // 创建XMLHttp请求对象
+  const request = new XMLHttpRequest();
+  // 请求服务器数据
+  request.open('GET', `https://restcountries.com/v2/name/${country}`);
+  // 服务器发送请求数据
+  request.send();
 
-//   request.addEventListener('load', function () {
-//     // 返回的响应文本
-//     console.log(this.responseText);
-//     const [data] = JSON.parse(this.responseText);
-//     console.log(data);
+  request.addEventListener('load', function () {
+    // 返回的响应文本
+    console.log(this.responseText);
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
 
-//     const html = `
-//     <article class="country">
-//     <img class="country__img" src="${data.flag}" />
-//     <div class="country__data">
-//       <h3 class="country__name">${data.name}</h3>
-//       <h4 class="country__region">${data.region}</h4>
-//       <p class="country__row"><span>👫</span>${(
-//         +data.population / 1000000
-//       ).toFixed(1)} people</p>
-//       <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-//       <p class="country__row"><span>💰</span>${data.languages[0].currencies}</p>
-//     </div>
-//   </article>
-//     `;
-//     countriesContainer.insertAdjacentHTML('beforeend', html);
-//     countriesContainer.style.opacity = 1;
-//   });
-// };
+    const html = `
+    <article class="country">
+    <img class="country__img" src="${data.flag}" />
+    <div class="country__data">
+      <h3 class="country__name">${data.name}</h3>
+      <h4 class="country__region">${data.region}</h4>
+      <p class="country__row"><span>👫</span>${(
+        +data.population / 1000000
+      ).toFixed(1)} people</p>
+      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
+      <p class="country__row"><span>💰</span>${data.languages[0].currencies}</p>
+    </div>
+  </article>
+    `;
+    countriesContainer.insertAdjacentHTML('beforeend', html);
+    countriesContainer.style.opacity = 1;
+  });
+};
 
 // getCountryDate('portugal');
 // getCountryDate('usa');
@@ -183,37 +187,38 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 /*
   在这里我们应该得到墨西哥或加拿大, 确实, 第二次AJAX调用是不可能的, 没有第一个, 因为否则, 我们怎么知道第二个国家必须是加拿大吗？ 所以，再一次, 我们这里有一个AJAX调用, 这取决于另一个, 所以我们这里有一个回调函数, 在另一个里面, 所以你在这里看到, 我们附加了第一个回调函数, 然后在里面, 我们还有另一个, 所以换句话说， 在这里, 我们有嵌套的回调, 想象一下我们想要依次执行更多请求, 像邻居的邻居, 并喜欢10倍以上, 在那种情况下, 我们最终会在回调中的回调中使用回调, 像10次, 实际上, 对于这种结构, 对于这种行为, 我们有一个特殊的名字, 这个特殊的名字是回调地狱, 所以基本上, 回调地狱是当我们有很多嵌套回调时, 以便按顺序执行异步任务, 实际上, 所以异步任务都会发生这种情况, 由回调处理, 而不仅仅是AJAX调用
 */
-// const getCountryAndNeighbour = function (country) {
-//   // AJAX call country 1
-//   const request = new XMLHttpRequest();
-//   request.open('GET', `https://restcountries.com/v2/name/${country}`);
-//   request.send();
-//   // 1. 第一次执行异步函数
-//   request.addEventListener('load', function () {
-//     const [data] = JSON.parse(this.responseText);
-//     console.log(data);
-//     // AJAX render country 1
-//     renderCountry(data);
 
-//     // Get neighbour country (2)
-//     const [neighbour] = data.borders;
-//     if (!neighbour) return;
+const getCountryAndNeighbour = function (country) {
+  // AJAX call country 1
+  const request = new XMLHttpRequest();
+  request.open('GET', `https://restcountries.com/v2/name/${country}`);
+  request.send();
+  // 1. 第一次执行异步函数
+  request.addEventListener('load', function () {
+    const [data] = JSON.parse(this.responseText);
+    console.log(data);
+    // AJAX render country 1
+    renderCountry(data);
 
-//     // AJAX call country 2
-//     const request2 = new XMLHttpRequest();
-//     request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);
-//     request2.send();
-//     // 2. 第二次执行异步函数
-//     request2.addEventListener('load', function () {
-//       const data2 = JSON.parse(this.responseText);
-//       console.log(data2);
+    // Get neighbour country (2)
+    const [neighbour] = data.borders;
+    if (!neighbour) return;
 
-//       renderCountry(data2, 'neighbour');
-//     });
-//   });
-// };
+    // AJAX call country 2
+    const request2 = new XMLHttpRequest();
+    request2.open('GET', `https://restcountries.com/v2/alpha/${neighbour}`);
+    request2.send();
+    // 2. 第二次执行异步函数
+    request2.addEventListener('load', function () {
+      const data2 = JSON.parse(this.responseText);
+      console.log(data2);
 
-// getCountryAndNeighbour('portugal');
+      renderCountry(data2, 'neighbour');
+    });
+  });
+};
+
+getCountryAndNeighbour('portugal');
 
 /************** Promises 和 Fetch API */
 /*
@@ -222,12 +227,12 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
   3. fetch函数返回一个承诺, 如果返回的承诺是resolve, then()则执行方法中的函数, 处理API接收到的数据在函数中
 */
 
-// const request = new XMLHttpRequest();
-// request.open('GET', `https://restcountries.com/v2/name/${country}`);
-// request.send();
+const request = new XMLHttpRequest();
+request.open('GET', `https://restcountries.com/v2/name/${country}`);
+request.send();
 
-// const request = fetch('https://restcountries.com/v2/name/portugal');
-// console.log(request); // Promises Response 回复
+const request = fetch('https://restcountries.com/v2/name/portugal');
+console.log(request); // Promises Response 回复
 
 /* (有图)
   什么是承诺？
@@ -262,22 +267,23 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 */
 
 /************** 消费承诺 */
-// const getCountryData = function (country) {
-//   fetch(`https://restcountries.com/v2/name/${country}`)
-//     .then(function (response) {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       renderCountry(data[0]);
-//       const neighbour = data[0].borders[0];
-//       if (!neighbour) return;
-//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
-//     })
-//     .then(response => response.json())
-//     .then(data => renderCountry(data, 'neighbour'));
-// };
+
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(function (response) {
+      console.log(response);
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data, 'neighbour'));
+};
 
 // getCountryData('portugal');
 
@@ -297,56 +303,56 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
   4. err是一个JavaScript对象, 我们可以使用构造函数在JavaScript种创建错误, 就像map和set
 */
 
-// const getCountryData = function (country) {
-//   fetch(`https://restcountries.com/v3/name/${countrys}`)
-//     .then(response => {
-//       console.log(response);
-//       /*
-//         body: （…）
-//         bodyUsed: true
-//         headers: Headers {}
-//         ok: true
-//         redirected: false
-//         status: 200
-//         statusText: "OK"
-//         type: "cors"
-//         url: "https://restcountries.com/v3/name/portugal"
-//         [[Prototype]]: Response
-//       */
-//       if (!response.ok)
-//         // 拒绝响应信息时, 手动抛出一个错误对象
-//         throw new Error(`Country not found (${response.status})`);
-//       return response.json();
-//     })
-//     .then(data => {
-//       console.log(data);
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3/name/${countrys}`)
+    .then(response => {
+      console.log(response);
+      /*
+        body: （…）
+        bodyUsed: true
+        headers: Headers {}
+        ok: true
+        redirected: false
+        status: 200
+        statusText: "OK"
+        type: "cors"
+        url: "https://restcountries.com/v3/name/portugal"
+        [[Prototype]]: Response
+      */
+      if (!response.ok)
+        // 拒绝响应信息时, 手动抛出一个错误对象
+        throw new Error(`Country not found (${response.status})`);
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
 
-//       /*
-//         {status: 404, message: 'Not Found'}
-//         message: "Not Found"
-//         status: 404
-//         [[Prototype]]: Object
-//       */
-//       renderCountry(data[0]);
-//       const neighbour = data[0].borders[0];
-//       if (!neighbour) return;
+      /*
+        {status: 404, message: 'Not Found'}
+        message: "Not Found"
+        status: 404
+        [[Prototype]]: Object
+      */
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
 
-//       return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
-//     })
-//     .then(response => response.json())
-//     .then(data => renderCountry(data, 'neighbour'))
-//     .catch(err => {
-//       // Country not found (404) 😁😁😁
-//       console.error(`${err} 😁😁😁`);
-//       renderError(`Somethins went wrong 😁😁 ${err.message}. Try again!`);
-//     })
-//     .finally(() => {
-//       countriesContainer.style.opacity = 1;
-//     });
-// };
-// btn.addEventListener('click', function () {
-//   getCountryData('portugalasdasda');
-// });
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      // Country not found (404) 😁😁😁
+      console.error(`${err} 😁😁😁`);
+      renderError(`Somethins went wrong 😁😁 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+btn.addEventListener('click', function () {
+  getCountryData('portugalasdasda');
+});
 
 /************** 手动抛出错误 */
 /*
@@ -355,38 +361,38 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
   3. fetch函数仍然没有拒绝, 顺便说一下, 很多人包括我自己认为在这种情况下, 实际上应该立即拒绝承诺, 因为在这个回调中抛出一个错误, 这个then方法将立即拒绝这个承诺, 然后那个被拒绝的承诺会传播下去, 知道它最终在某个地方被抓住, 这种情况下, 它就在这里, 在这个catch处理程序中
 */
 
-// const getCountryData = function (country) {
-//   // Country 1
-//   getJSON(`https://restcountries.com/v3/name/${country}`, 'Country not found')
-//     .then(data => {
-//       console.log(data);
-//       renderCountry(data[0]);
-//       const neighbour = data[0].borders[0];
+const getCountryData = function (country) {
+  // Country 1
+  getJSON(`https://restcountries.com/v3/name/${country}`, 'Country not found')
+    .then(data => {
+      console.log(data);
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
 
-//       if (!neighbour) throw new Error('No neighbour found!');
+      if (!neighbour) throw new Error('No neighbour found!');
 
-//       // Country 2
-//       return getJSON(
-//         `https://restcountries.com/v3/alpha/${neighbour}`,
-//         'Country not found'
-//       );
-//     })
+      // Country 2
+      return getJSON(
+        `https://restcountries.com/v3/alpha/${neighbour}`,
+        'Country not found'
+      );
+    })
 
-//     .then(data => renderCountry(data, 'neighbour'))
-//     .catch(err => {
-//       console.error(`${err} 💥💥💥`);
-//       renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
-//     })
-//     .finally(() => {
-//       countriesContainer.style.opacity = 1;
-//     });
-// };
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => {
+      console.error(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
 
-// btn.addEventListener('click', function () {
-//   getCountryData('portugalsda');
-// });
+btn.addEventListener('click', function () {
+  getCountryData('portugalsda');
+});
 
-// getCountryData('australia');
+getCountryData('australia');
 
 /************** 编码挑战 #1  Coding Challenge #1 */
 /*
@@ -412,30 +418,30 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 
   祝你好运😀
 */
-// const whereAmI = function (lat, lng) {
-//   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
-//     .then(res => res.json())
-//     .then(data => {
-//       console.log(data);
-//       console.log(`You are in ${data.city}, ${data.country}`);
+const whereAmI = function (lat, lng) {
+  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      console.log(`You are in ${data.city}, ${data.country}`);
 
-//       return fetch(`https://restcountries.com/v2/name/${data.country}`);
-//     })
-//     .then(res => {
-//       // 手动抛出错误信息, 并向下传递到catch方法
-//       if (!res.ok) throw new Error(`Country not found (${res.status})`);
-//       return res.json();
-//     })
-//     .then(data => renderCountry(data[0]))
-//     .catch(err => {
-//       console.log(err);
-//       console.error(`${err.message} 💥 `);
-//     });
-// };
+      return fetch(`https://restcountries.com/v2/name/${data.country}`);
+    })
+    .then(res => {
+      // 手动抛出错误信息, 并向下传递到catch方法
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+      return res.json();
+    })
+    .then(data => renderCountry(data[0]))
+    .catch(err => {
+      console.log(err);
+      console.error(`${err.message} 💥 `);
+    });
+};
 
-// whereAmI(52.508, 13.381);
-// whereAmI(19.037, 72.873);
-// whereAmI(-33.933, 18.474);
+whereAmI(52.508, 13.381);
+whereAmI(19.037, 72.873);
+whereAmI(-33.933, 18.474);
 
 /************** 幕后异步：事件循环 (Behind the scenes asynchrony: the event loop) */
 /*
@@ -501,19 +507,19 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 /*
   1. 太好了, 这就是我们以封装的方式将异步行为转化为承诺, 所以我们如何以一种非常好的方式抽象出来, 就像我们这里所做的一样
 */
-// const lotteryPromise = new Promise(function (resolve, reject) {
-//   console.log('Lotter draw is happening 😀');
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lotter draw is happening 😀');
 
-//   setTimeout(function () {
-//     if (Math.random() >= 0.5) {
-//       resolve('You win $$$');
-//     } else {
-//       reject(new Error('You lost your money!!'));
-//     }
-//   }, 2000);
-// });
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You win $$$');
+    } else {
+      reject(new Error('You lost your money!!'));
+    }
+  }, 2000);
+});
 
-// lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
 
 // 如何通过承诺设置计时器
 // const wait = function (seconds) {
@@ -713,47 +719,48 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
   3. try...catch语句标记要尝试的语句块，并指定应引发异常的响应
 
 */
-// const whereAmI = async function () {
-//   try {
-//     // Geolocation
-//     const pos = await getPosition();
-//     const { latitude: lat, longitude: lng } = pos.coords;
 
-//     // Reverse geocoding
-//     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-//     if (!resGeo.ok) throw new Error('Problem getting location data');
-//     const dataGeo = await resGeo.json();
-//     console.log(dataGeo.country);
+const whereAmI = async function () {
+  try {
+    // Geolocation
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
 
-//     // Country data
-//     const res = await fetch(
-//       `https://restcountries.com/v3.1/name/${dataGeo.country}`
-//     );
+    // Reverse geocoding
+    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!resGeo.ok) throw new Error('Problem getting location data');
+    const dataGeo = await resGeo.json();
+    console.log(dataGeo.country);
 
-//     // BUG in video:
-//     // if (!resGeo.ok) throw new Error('Problem getting country');
+    // Country data
+    const res = await fetch(
+      `https://restcountries.com/v3.1/name/${dataGeo.country}`
+    );
 
-//     // FIX:
-//     if (!res.ok) throw new Error('Problem getting country');
-//     const data = await res.json();
-//     console.log(data[0]);
-//     renderCountry(data[0]);
-//   } catch (err) {
-//     console.error(`${err} 💥`);
-//     renderError(`💥 ${err.message}`);
-//   }
-// };
-// whereAmI();
-// whereAmI();
-// whereAmI();
-// console.log('FIRST');
-// try {
-//   let y = 1;
-//   const x = 2;
-//   y = 3;
-// } catch (err) {
-//   alert(err.message);
-// }
+    // BUG in video:
+    // if (!resGeo.ok) throw new Error('Problem getting country');
+
+    // FIX:
+    if (!res.ok) throw new Error('Problem getting country');
+    const data = await res.json();
+    console.log(data[0]);
+    renderCountry(data[0]);
+  } catch (err) {
+    console.error(`${err} 💥`);
+    renderError(`💥 ${err.message}`);
+  }
+};
+whereAmI();
+whereAmI();
+whereAmI();
+console.log('FIRST');
+try {
+  let y = 1;
+  const x = 2;
+  y = 3;
+} catch (err) {
+  alert(err.message);
+}
 
 /************** 从异步函数返回值(返回承诺) */
 /*
@@ -829,15 +836,15 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 //   .finally(() => console.log('3: Finished getting location'));
 
 // 3.
-// (async function () {
-//   try {
-//     const city = await whereAmI();
-//     console.log(`2: ${city}`);
-//   } catch (err) {
-//     console.log(`2: ${err.message} 💥`);
-//   }
-//   console.log('3: Finished getting location');
-// })();
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`2: ${city}`);
+  } catch (err) {
+    console.log(`2: ${err.message} 💥`);
+  }
+  console.log('3: Finished getting location');
+})();
 
 /************** 并行运行Promise.all */
 /*
@@ -846,26 +853,26 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
   3. .call同一时间处理数据, 按照异步回调顺序显示数据
 */
 
-// const get3Countries = async function (c1, c2, c3) {
-//   try {
-//     // 旧方法
-//     // const [data1] = await getJSON(`https://restcountries.com/v3/name/${c1}`);
-//     // const [data2] = await getJSON(`https://restcountries.com/v3/name/${c2}`);
-//     // const [data3] = await getJSON(`https://restcountries.com/v3/name/${c3}`);
-//     // console.log(data1.capital, data2.capital, data3.capital);
-//     // 新方法
-//     const data = await Promise.all([
-//       getJSON(`https://restcountries.com/v3/name/${c1}`),
-//       getJSON(`https://restcountries.com/v3/name/${c2}`),
-//       getJSON(`https://restcountries.com/v3/name/${c3}`),
-//     ]);
-//     console.log(data);
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // 旧方法
+    // const [data1] = await getJSON(`https://restcountries.com/v3/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.com/v3/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.com/v3/name/${c3}`);
+    // console.log(data1.capital, data2.capital, data3.capital);
+    // 新方法
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v3/name/${c1}`),
+      getJSON(`https://restcountries.com/v3/name/${c2}`),
+      getJSON(`https://restcountries.com/v3/name/${c3}`),
+    ]);
+    console.log(data);
 
-//     console.log(data.map(d => d[0].capital));
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    console.log(data.map(d => d[0].capital));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // get3Countries('portugal', 'canada', 'tanzania');
 
@@ -878,18 +885,18 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
     4. 结果返回最快响应的API数据, 如果输入API地址错误, 那么会显示undefined不会影响使用
     5. 方法返回一个 promise，一旦迭代器中的某个promise解决或拒绝，返回的 promise就会解决或拒绝，只有一个承诺会被解决，那个快返回哪个(重点)
 */
-// (async function () {
-//   try {
-//     const res = await Promise.race([
-//       getJSON(`https://restcountries.com/v2/name/italy`),
-//       getJSON(`https://restcountries.com/v2/name/egypt`),
-//       getJSON(`https://restcountries.com/v2/name/mexico`),
-//     ]);
-//     console.log(res[0]);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// })();
+(async function () {
+  try {
+    const res = await Promise.race([
+      getJSON(`https://restcountries.com/v2/name/italy`),
+      getJSON(`https://restcountries.com/v2/name/egypt`),
+      getJSON(`https://restcountries.com/v2/name/mexico`),
+    ]);
+    console.log(res[0]);
+  } catch (err) {
+    console.log(err);
+  }
+})();
 
 // 创建一个特殊超时承诺
 // const timeout = function (sec) {
@@ -1035,21 +1042,21 @@ GOOD LUCK 😀
 // loadNpause();
 
 // PART 2
-// const loadAll = async function (imgArr) {
-//   try {
-//     /*
-//       1. 异步函数将始终返回一个承诺
-//       2. async img(代表这是一个异步函数) => (箭头相当于return) await createImage(img)()
-//       3. async function(img) = { await createImage(img) }
-//       4.这里我们想要返回的值将成为承诺的实现价值, 异步函数返回
-//     */
-//     const imgs = imgArr.map(async img => await createImage(img));
-//     console.log(imgs);
-//     const imgsEl = await Promise.all(imgs);
-//     console.log(imgsEl);
-//     imgsEl.forEach(img => img.classList.add('parallel'));
-//   } catch {
-//     console.error(`${err}`);
-//   }
-// };
-// loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+const loadAll = async function (imgArr) {
+  try {
+    /*
+      1. 异步函数将始终返回一个承诺
+      2. async img(代表这是一个异步函数) => (箭头相当于return) await createImage(img)()
+      3. async function(img) = { await createImage(img) }
+      4.这里我们想要返回的值将成为承诺的实现价值, 异步函数返回
+    */
+    const imgs = imgArr.map(async img => await createImage(img));
+    console.log(imgs);
+    const imgsEl = await Promise.all(imgs);
+    console.log(imgsEl);
+    imgsEl.forEach(img => img.classList.add('parallel'));
+  } catch {
+    console.error(`${err}`);
+  }
+};
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
