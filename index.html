@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Mark 和 John 正在尝试比较他们的 BMI（身体质量指数），该指数使用以下公式计算：BMI = 质量 / 身高 ** 2 = 质量 /（身高 * 身高）。 （质量单位为公斤，高度单位为米）。
+
+1. 将 Mark 和 John 的质量和高度存储在变量中
+2.使用公式计算他们的BMI（你甚至可以实现两个版本）
+3. 创建一个布尔变量“markHigherBMI”，其中包含有关 Mark 的 BMI 是否高于 John 的信息。
+
+测试数据 1：标记重 78 kg，高 1.69 m。 John 体重 92 kg，身高 1.95 m。
+测试数据 2：标记重 95 kg，高 1.88 m。 约翰体重 85 kg，身高 1.76 m。
+
+<script>
+    const age = '18';
+    if (age === 18) console.log('You just became an adult :D (strict)');
+
+    if (age == 18) console.log('You just became an adult :D (loose)');
+
+    const favourite = Number(prompt("What's your favourite number?"));
+    console.log(favourite);
+    console.log(typeof favourite);
+
+    if (favourite === 23) { // 22 === 23 -> FALSE
+    console.log('Cool! 23 is an amzaing number!')
+    } else if (favourite === 7) {
+    console.log('7 is also a cool number')
+    } else if (favourite === 9) {
+    console.log('9 is also a cool number')
+    } else {
+    console.log('Number is not 23 or 7 or 9')
+    }
+
+    if (favourite !== 23) console.log('Why not 23?');
+</script>
+</body>
+</html>
