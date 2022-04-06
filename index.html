@@ -17,26 +17,22 @@
 测试数据 2：标记重 95 kg，高 1.88 m。 约翰体重 85 kg，身高 1.76 m。
 
 <script>
-    const age = '18';
-    if (age === 18) console.log('You just became an adult :D (strict)');
+    // The Conditional (Ternary) Operator
+    const age = 23;
+    // age >= 18 ? console.log('I like to drink wine 🍷') : console.log('I like to drink water 💧');
 
-    if (age == 18) console.log('You just became an adult :D (loose)');
+    const drink = age >= 18 ? 'wine 🍷' : 'water 💧';
+    console.log(drink);
 
-    const favourite = Number(prompt("What's your favourite number?"));
-    console.log(favourite);
-    console.log(typeof favourite);
-
-    if (favourite === 23) { // 22 === 23 -> FALSE
-    console.log('Cool! 23 is an amzaing number!')
-    } else if (favourite === 7) {
-    console.log('7 is also a cool number')
-    } else if (favourite === 9) {
-    console.log('9 is also a cool number')
+    let drink2;
+    if (age >= 18) {
+    drink2 = 'wine 🍷';
     } else {
-    console.log('Number is not 23 or 7 or 9')
+    drink2 = 'water 💧';
     }
+    console.log(drink2);
 
-    if (favourite !== 23) console.log('Why not 23?');
+    console.log(`I like to drink ${age >= 18 ? 'wine 🍷' : 'water 💧'}`);
 </script>
 </body>
 </html>
