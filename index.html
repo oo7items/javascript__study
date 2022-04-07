@@ -7,32 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    Mark 和 John 正在尝试比较他们的 BMI（身体质量指数），该指数使用以下公式计算：BMI = 质量 / 身高 ** 2 = 质量 /（身高 * 身高）。 （质量单位为公斤，高度单位为米）。
 
-1. 将 Mark 和 John 的质量和高度存储在变量中
-2.使用公式计算他们的BMI（你甚至可以实现两个版本）
-3. 创建一个布尔变量“markHigherBMI”，其中包含有关 Mark 的 BMI 是否高于 John 的信息。
-
-测试数据 1：标记重 78 kg，高 1.69 m。 John 体重 92 kg，身高 1.95 m。
-测试数据 2：标记重 95 kg，高 1.88 m。 约翰体重 85 kg，身高 1.76 m。
 
 <script>
-    // The Conditional (Ternary) Operator
-    const age = 23;
-    // age >= 18 ? console.log('I like to drink wine 🍷') : console.log('I like to drink water 💧');
+    var x = [0,1,2,3]
+    var a = [[1,2,3], [4,5,6], [7,8,9],[7,8,9]];
 
-    const drink = age >= 18 ? 'wine 🍷' : 'water 💧';
-    console.log(drink);
-
-    let drink2;
-    if (age >= 18) {
-    drink2 = 'wine 🍷';
-    } else {
-    drink2 = 'water 💧';
-    }
-    console.log(drink2);
-
-    console.log(`I like to drink ${age >= 18 ? 'wine 🍷' : 'water 💧'}`);
+    for (var i = 0, j = 9; i <= j; i++, j--)
+    console.log('a[' + i + '][' + j + ']= ' + a[i][j]);
 </script>
 </body>
 </html>
