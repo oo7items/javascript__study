@@ -57,6 +57,11 @@ document.querySelector('.check').addEventListener('click', function () {
     }
   }
 
+
+
+
+  /**是的金卡手机打开拉萨距离喀什觉得 */
+
   //   // When guess is too high
   // } else if (guess > secretNumber) {
   //   if (score > 1) {
