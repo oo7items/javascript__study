@@ -109,3 +109,16 @@ Implement a game rest functionality, so that the player can make a new guess! He
 
 GOOD LUCK 😀
 */
+
+  // 编码挑战#1
+
+  /*
+  实现游戏休息功能，让玩家可以做出新的猜测！ 方法如下：
+
+  1. 选择具有“再次”类的元素并附加一个单击事件处理程序
+  2.在handler函数中，恢复score和secretNumber变量的初始值
+  3.恢复消息、数字、分数和猜测输入栏的初始条件
+  4. 也恢复原来的背景颜色（#222）和数字宽度（15rem）
+
+  祝你好运😀
+  */
