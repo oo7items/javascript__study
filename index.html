@@ -23,8 +23,28 @@
   祝你好运😀
   <script>
     'use strict';
-    console.log(a);
-    const a = 3;
+
+    var firstName = 'John';
+
+    const jonas = {
+      firstName: 'Jonas',
+      year: 1991,
+      // calcAge: function () {
+      //   // console.log(this);
+      //   console.log(2037 - this.year);
+      //   const self = this;
+      //   const isMillenial = function () {
+      //     console.log(self);
+      //     // console.log(self.year >= 1981 && self.year <= 1996);
+      //     console.log(this.year >= 1981 && this.year <= 1996); // TypeError: Cannot read properties of undefined (reading 'yea
+      //   };
+      // isMillenial();
+    },
+      greet: () => console.log(`Hey ${this.firstName}`), // Hey John
+    };
+
+    jonas.greet();
+    jonas.calcAge();
 
   </script>
 </body>
