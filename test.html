@@ -8,44 +8,27 @@
 </head>
 <body>
     <script>
-    // console.log('Lifting weights repetition 1 🏋️‍♀️');
-    // console.log('Lifting weights repetition 2 🏋️‍♀️');
-    // console.log('Lifting weights repetition 3 🏋️‍♀️');
-    // console.log('Lifting weights repetition 4 🏋️‍♀️');
-    // console.log('Lifting weights repetition 5 🏋️‍♀️');
-    // console.log('Lifting weights repetition 6 🏋️‍♀️');
-    // console.log('Lifting weights repetition 7 🏋️‍♀️');
-    // console.log('Lifting weights repetition 8 🏋️‍♀️');
-    // console.log('Lifting weights repetition 9 🏋️‍♀️');
-    // console.log('Lifting weights repetition 10 🏋️‍♀️');
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    };
 
-    // for loop keeps running while condition is TRUE
-    // for (let rep = 1; rep <= 30; rep++) {
-    // console.log(`Lifting weights repetition ${rep} 🏋️‍♀️`);
-    // }
-//     让我们进一步改进 Steven 的小费计算器，这次使用循环！
+    const arr = [2, 3, 4];
+    const a = arr[0];
+    const b = arr[1];
+    const c = arr[2];
 
-// 1. 创建一个包含所有 10 个测试账单值的数组“账单”
-// 2. 为提示和总计创建空数组（'tips' 和 'totals'）
-// 3. 使用我们之前写的'calcTip'函数（无需重复）计算票据数组中每个票据值的小费和总值（票据+小费）。使用 for 循环执行 10 次计算！
+    const [x, y, z] = arr;
+    console.log(x, y, z);
+    console.log(arr);
 
-// 测试数据：22、295、176、440、37、105、10、1100、86 和 52
+    // const [first, second] = restaurant.categories;
+    const [first, ,second] = restaurant.categories;
+    console.log(first, second);
 
-// 提示：在循环中调用 calcTip 并使用 push 方法将值添加到 Tips 和 totals 数组😉
-
-// 4. 奖励：编写一个函数 'calcAverage'，它接受一个名为 'arr' 的数组作为参数。此函数计算给定数组中所有数字的平均值。这是一项艰巨的挑战（我们以前没有这样做过）！以下是解决方法：
-//   4.1。首先，您需要将数组中的所有值相加。要进行加法，首先创建一个从 0 开始的变量“sum”。然后使用 for 循环遍历数组。在每次迭代中，将当前值添加到“sum”变量中。这样，在循环结束时，您将所有值加在一起
-//   4.2.要计算平均值，请将您之前计算的总和除以数组的长度（因为这是元素的数量）
-//   4.3.使用“totals”数组调用函数
-
-// 祝你好运😀
-    let dice = Math.trunc(Math.random() * 6) + 1;
-
-    while (dice !== 6) {
-        console.log(`You rolled a ${dice}`);
-        dice = Math.trunc(Math.random() * 6) + 1;
-    if (dice === 6) console.log(`dsadasdioadjoai ${dice}`);
-    }
 
     </script>
 </body>
