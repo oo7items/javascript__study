@@ -82,6 +82,9 @@
             },
             orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
                 console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+            },
+            orderPasta: function (ing1, ing2, ing3) {
+                console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
             }
         };
         // const { name, openingHours, categories } = restaurant;
@@ -131,17 +134,79 @@
 
         const arr = [7, 8, 9];
         const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-        console.log(badNewArr);
-        // (5) [1, 2, 7, 8, 9]
+        console.log(badNewArr); // (5) [1, 2, 7, 8, 9]
+
         const newArr = [1, 2, ...arr];
-        console.log(newArr);
-        // (5) [1, 2, 7, 8, 9]
-        console.log(...newArr);
-        // 1 2 7 8 9
+        console.log(newArr); // (5) [1, 2, 7, 8, 9]
 
-        const newMenu = [...restaurant, mainMenu,]
+        console.log(...newArr); // 1 2 7 8 9
+        console.log(1, 2, 7, 8, 9);
+
+        const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+        console.log(newMenu); // Array(4) 0: "Pizza" 1: "Pasta" 2: "Risotto" 3: "Gnocci" length: 4
+
+        // Copy array
+        const mainMenuCopy = [...restaurant.mainMenu];
+        console.log(mainMenuCopy);
+
+        // Join 2 arrays
+        const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+        console.log(menu);
+
+        // Iterables(可重复的): arrays, strings, maps, sets. NOT objects
+        const str = 'Jonas';
+        const letters = [...str, ' ', 'S.'];
+        console.log(letters);
+        console.log(...str);
+        // console.log(`${ ...str } Schmedtmann`) // 报错
+
+        // Real-world example
+        // 扩展用于新数组 && 函数传参数
+        // const ingredients = [
+        //     prompt("Let's make pasta! Ingredient 1?"),
+        //     prompt('Ingredient 2?'),
+        //     prompt('Ingredient 3'),
+        // ];
+        // console.log(ingredients);
+
+        // restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+        // restaurant.orderPasta(...ingredients);
+
+        // Object 
+        const newRestaurant = {
+            foundedIn: 1998,
+            ...restaurant,
+            founder: 'Guiseppe'
+        };
+        console.log(newRestaurant);
+
+        const restaurantCopy = { ...newRestaurant };
+        console.log(restaurantCopy);
+
+        restaurantCopy.name = 'Ristorante Roma';
+        restaurantCopy.categories.push('haha');
+        console.log(restaurant);
+        console.log(newRestaurant); // Classico Italiano
+        console.log(restaurantCopy); // Ristorante Roma
 
 
+        let mark = {
+            age: "18",
+            job: 'teacher'
+        }
+        let Jonas = mark;
+        Jonas = {};
+        Jonas.job = "drive";
+        console.log(mark, Jonas);
+
+        console.log(test);
+        var test = function () {
+            console.log('hahah');
+        }
+        console.log(test);
+
+        console.log(a); // 未捕获的引用错误:无法在初始化前访问“a”
+        const a = 123;
 
     </script>
 </body>
