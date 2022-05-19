@@ -87,6 +87,16 @@
                 console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
             }
         };
+        
+        // SPREAD，because on RIGHT side of =
+        const arr = [1, 2, ...[3, 4]];
+
+        // REST，because on LEFT side of =
+        const [a, b, ...others] = [1, 2, 3, 4, 5];
+        console.log(others);
+
+
+        
         // const { name, openingHours, categories } = restaurant;
         // console.log(name, openingHours, categories);
         // // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
@@ -128,32 +138,32 @@
         //     starterIndex: 2,
         // });
 
-        const arr = [7, 8, 9];
-        const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-        console.log(badNewArr); // (5) [1, 2, 7, 8, 9]
+        // const arr = [7, 8, 9];
+        // const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+        // console.log(badNewArr); // (5) [1, 2, 7, 8, 9]
 
-        const newArr = [1, 2, ...arr];
-        console.log(newArr); // (5) [1, 2, 7, 8, 9]
+        // const newArr = [1, 2, ...arr];
+        // console.log(newArr); // (5) [1, 2, 7, 8, 9]
 
-        console.log(...newArr); // 1 2 7 8 9
-        console.log(1, 2, 7, 8, 9);
+        // console.log(...newArr); // 1 2 7 8 9
+        // console.log(1, 2, 7, 8, 9);
 
-        const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-        console.log(newMenu); // Array(4) 0: "Pizza" 1: "Pasta" 2: "Risotto" 3: "Gnocci" length: 4
+        // const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+        // console.log(newMenu); // Array(4) 0: "Pizza" 1: "Pasta" 2: "Risotto" 3: "Gnocci" length: 4
 
-        // Copy array
-        const mainMenuCopy = [...restaurant.mainMenu];
-        console.log(mainMenuCopy);
+        // // Copy array
+        // const mainMenuCopy = [...restaurant.mainMenu];
+        // console.log(mainMenuCopy);
 
-        // Join 2 arrays
-        const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-        console.log(menu);
+        // // Join 2 arrays
+        // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+        // console.log(menu);
 
-        // Iterables(可重复的): arrays, strings, maps, sets. NOT objects
-        const str = 'Jonas';
-        const letters = [...str, ' ', 'S.'];
-        console.log(letters);
-        console.log(...str);
+        // // Iterables(可重复的): arrays, strings, maps, sets. NOT objects
+        // const str = 'Jonas';
+        // const letters = [...str, ' ', 'S.'];
+        // console.log(letters);
+        // console.log(...str);
         // console.log(`${ ...str } Schmedtmann`) // 报错
 
         // Real-world example
@@ -168,20 +178,20 @@
         // restaurant.orderPasta(...ingredients);
 
         // Object
-        const newRestaurant = {
-            foundedIn: 1998,
-            ...restaurant,
-            founder: 'Guiseppe'
-        };
-        console.log(newRestaurant);
+        // const newRestaurant = {
+        //     foundedIn: 1998,
+        //     ...restaurant,
+        //     founder: 'Guiseppe'
+        // };
+        // console.log(newRestaurant);
 
-        const restaurantCopy = { ...newRestaurant };
-        // restaurantCopy.name = 'Ristorante Roma';
-        console.log(restaurantCopy.name);
-        console.log(restaurant.name);
+        // const restaurantCopy = { ...newRestaurant };
+        // // restaurantCopy.name = 'Ristorante Roma';
+        // console.log(restaurantCopy.name);
+        // console.log(restaurant.name);
 
-        const a = [1, 2, 3, 4, 5];
-        console.log(...a);
+        // const a = [1, 2, 3, 4, 5];
+        // console.log(...a);
 
 
     </script>
