@@ -87,50 +87,46 @@
                 console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
             }
         };
-        const { name, openingHours, categories } = restaurant;
-        console.log(name, openingHours, categories);
-        // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
-        console.log(name === restaurant.name); // true
+        // const { name, openingHours, categories } = restaurant;
+        // console.log(name, openingHours, categories);
+        // // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
+        // console.log(name === restaurant.name); // true
 
-        // 自定义属性名称
-        const {
-            name: restaurantName,
-            openingHours: hours,
-            categories: tags,
-        } = restaurant;
-        console.log(restaurantName, hours, tags);
-        // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
+        // // 自定义属性名称
+        // const {
+        //     name: restaurantName,
+        //     openingHours: hours,
+        //     categories: tags,
+        // } = restaurant;
+        // console.log(restaurantName, hours, tags);
+        // // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
 
-        // 默认值
-        const { menu = [], starterMenu: starters = [] } = restaurant;
-        console.log(menu, starters);
-        console.log(menu in restaurant); // false
+        // // 默认值
+        // const { menu = [], starterMenu: starters = [] } = restaurant;
+        // console.log(menu, starters);
+        // console.log(menu in restaurant); // false
 
-        // 变异变量
-        let a = 111;
-        let b = 999;
-        let obj = { a: 23, b: 7, c: 14 };
-        ({ a, b } = obj);
-        console.log(obj);
-        obj = {};
-        console.log(obj);
-        console.log(a, b); // 23 7
+        // // 变异变量
+        // let a = 111;
+        // let b = 999;
+        // let obj = { a: 23, b: 7, c: 14 };
+        // ({ a, b } = obj);
+        // console.log(obj);
+        // obj = {};
+        // console.log(obj);
+        // console.log(a, b); // 23 7
 
-        // 嵌套对象
-        const { fri: { open, close } } = openingHours;
-        console.log(open, close);
+        // // 嵌套对象
+        // const { fri: { open, close } } = openingHours;
+        // console.log(open, close);
 
-        // 函数参数解构
-        restaurant.orderDelivery({
-            time: '22:30',
-            address: 'Via del Sole, 21',
-            mainIndex: 2,
-            starterIndex: 2,
-        });
-
-        const aa = [, 2, 3];
-        const [q = [], w, e] = aa;
-        console.log(q, w, e)
+        // // 函数参数解构
+        // restaurant.orderDelivery({
+        //     time: '22:30',
+        //     address: 'Via del Sole, 21',
+        //     mainIndex: 2,
+        //     starterIndex: 2,
+        // });
 
         const arr = [7, 8, 9];
         const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
@@ -161,7 +157,6 @@
         // console.log(`${ ...str } Schmedtmann`) // 报错
 
         // Real-world example
-        // 扩展用于新数组 && 函数传参数
         // const ingredients = [
         //     prompt("Let's make pasta! Ingredient 1?"),
         //     prompt('Ingredient 2?'),
@@ -181,28 +176,12 @@
         console.log(newRestaurant);
 
         const restaurantCopy = { ...newRestaurant };
-        console.log(restaurantCopy);
+        // restaurantCopy.name = 'Ristorante Roma';
+        console.log(restaurantCopy.name);
+        console.log(restaurant.name);
 
-        restaurantCopy.name = 'Ristorante Roma';
-        restaurantCopy.categories.push('haha');
-        console.log(restaurant);
-        console.log(newRestaurant); // Classico Italiano
-        console.log(restaurantCopy); // Ristorante Roma
-
-
-        // let mark = {
-        //     age: "18",
-        //     job: 'teacher'
-        // }
-        // let Jonas = mark;
-        // Jonas = {};
-        // Jonas.job = "drive";
-        // console.log(mark, Jonas);
-
-        // console.log(test);
-        // var test = function () {
-        //     console.log('hahah');
-        // }
+        const a = [1, 2, 3, 4, 5];
+        console.log(...a);
 
 
     </script>
