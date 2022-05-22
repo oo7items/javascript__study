@@ -448,17 +448,17 @@ console.log(new Set('jonasschmedtmann').size);
 // Coding Challenge #2
 
 /* 
-Let's continue with our football betting app!
+让我们继续使用我们的足球投注应用程序！
 
-1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
-2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
-3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
-      Odd of victory Bayern Munich: 1.33
+1. 循环 game.scored 数组并将每个玩家的姓名连同进球号码一起打印到控制台（例如：“Goal 1: Lewandowski”）
+2. 使用循环计算平均奇数并将其记录到控制台（我们已经研究过如何计算平均数，如果您不记得可以去检查）
+3. 将 3 个赔率打印到控制台，但格式很好，就像这样：
+     Odd of victory Bayern Munich: 1.33
       Odd of draw: 3.25
       Odd of victory Borrussia Dortmund: 6.5
-Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+直接从游戏对象中获取团队名称，不要对其进行硬编码（“draw”除外）。 提示：注意赔率和游戏对象如何具有相同的属性名称😉
 
-BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+奖励：创建一个名为“scorers”的对象，其中包含作为属性得分的球员的姓名，以及作为值的进球数。 在这个游戏中，它看起来像这样：
       {
         Gnarby: 1,
         Hummels: 1,

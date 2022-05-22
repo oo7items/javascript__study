@@ -10,249 +10,210 @@
 
 <body>
     <script>
-        // const restaurant = {
-        //     name: 'Classico Italiano',
-        //     location: 'Via Angelo Tavanti 23, Firenze, Italy',
-        //     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-        //     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-        //     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-        //     order(starterIndex, mainIndex) {
-        //         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
-        //     }
-        // };
 
-        // // ES5
-        // const arr = [2, 3, 4];
-        // // const a = arr[0];
-        // // const b = arr[1];
-        // // const c = arr[2];
+    /* 
+    让我们继续使用我们的足球投注应用程序！
 
-        // // ES6
-        // const [x, y, z] = arr;
-        // console.log(x, y, z); // 2 3 4
-        // console.log(arr); // Array(3) 0: 2 1: 3 2: 4 length: 3
+    1. 循环 game.scored 数组并将每个玩家的姓名连同进球号码一起打印到控制台（例如：“Goal 1: Lewandowski”）
+    2. 使用循环计算平均odds并将其记录到控制台（我们已经研究过如何计算平均数，如果您不记得可以去检查）
+    3. 将 3 个赔率打印到控制台，但格式很好，就像这样：
+        拜仁慕尼黑获胜几率：1.33
+        平局几率：3.25
+        多特蒙德胜利几率：6.5
+    直接从游戏对象中获取团队名称，不要对其进行硬编码（“draw”除外）。 提示：注意赔率和游戏对象如何具有相同的属性名称😉
 
-        // // const [first, second] = restaurant.categories;
-        // let [main, , secondary] = restaurant.categories;
-        // console.log(main, secondary); // Italian Vegetarian
-
-        // // const temp = main;
-        // // main = secondary;
-        // // secondary = temp;
-        // // console.log(main, secondary); // Vegetarian Italian 
-
-        // [main, secondary] = [secondary, main];
-        // console.log(main, secondary); // Italian Vegetarian
-
-        // // 从函数接收2个返回值
-        // const [starter, mainCourse] = restaurant.order(0, 2);
-        // console.log(starter, mainCourse); // Focaccia Risotto
-
-        // // 嵌套结构
-        // const nested = [2, 4, [5, 6]];
-        // // const [i, , j] = nested;
-        // const [i, , [j, k]] = nested;
-        // console.log(i, j, k); // 2 5 6
-
-        // // 默认值
-        // const [p = 1, q = 1, r = 1] = [8, , 9];
-        // console.log(p, q, r); // 8 1 9
-        const restaurant = {
-            name: 'Classico Italiano',
-            location: 'Via Angelo Tavanti 23, Firenze, Italy',
-            categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-            starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-            mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-            openingHours: {
-                thu: {
-                    open: 12,
-                    close: 22,
-                },
-                fri: {
-                    open: 11,
-                    close: 22,
-                },
-                sat: {
-                    open: 0,
-                    close: 24,
-                },
-            },
-            order: function (starterIndex, mainIndex) {
-                return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
-            },
-            orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
-                console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
-            },
-            orderPasta: function (ing1, ing2, ing3) {
-                console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
-            },
-            orderPizza: function (mainIngredient, ...otherIngredients) {
-                console.log(mainIngredient);
-                console.log(otherIngredients);
-            }
-        };
-
-        // SPREAD，because on RIGHT side of =
-        const arr = [1, 2, ...[3, 4]];
-        console.log(arr);
-
-        // REST，because on LEFT side of =
-        const [a, b, ...others] = [1, 2, 3, 4, 5];
-        console.log(a, b, others);
-
-        const [pizza, risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-        console.log(pizza, risotto, otherFood);
-
-        // Objects
-        const { sat, ...weekdays } = restaurant.openingHours;
-        console.log(weekdays);
-
-        // 2) Functions
-        const add = function (...numbers) {
-            // console.log(numbers); // [2, 3]
-            let sum = 0;
-            for (let i = 0; i < numbers.length; i++) {
-                sum += numbers[i];
-            }
-            console.log(sum); // 5
+    奖励：创建一个名为“scorers”的对象，其中包含作为属性得分的球员的姓名，以及作为值的进球数。 在这个游戏中，它看起来像这样：
+        {
+            Gnarby: 1,
+            Hummels: 1,
+            Lewandowski: 2
         }
 
-        add(2, 3);
+    祝您好运 😀
+    */
+    // const game = {
+    // team1: 'Bayern Munich',
+    // team2: 'Borrussia Dortmund',
+    // players: [
+    //     [
+    //     'Neuer',
+    //     'Pavard',
+    //     'Martinez',
+    //     'Alaba',
+    //     'Davies',
+    //     'Kimmich',
+    //     'Goretzka',
+    //     'Coman',
+    //     'Muller',
+    //     'Gnarby',
+    //     'Lewandowski',
+    //     ],
+    //     [
+    //     'Burki',
+    //     'Schulz',
+    //     'Hummels',
+    //     'Akanji',
+    //     'Hakimi',
+    //     'Weigl',
+    //     'Witsel',
+    //     'Hazard',
+    //     'Brandt',
+    //     'Sancho',
+    //     'Gotze',
+    //     ],
+    // ],
+    // score: '4:0',
+    // scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+    // date: 'Nov 9th, 2037',
+    // odds: {
+    //     team1: 1.33,
+    //     x: 3.25,
+    //     team2: 6.5,
+    // },
+    // };
 
-        const x = [23, 5, 7];
-        add(...x);
+    // // 1. 
+    // for (const [i, players] of game.scored.entries())
+    // console.log(`Goal ${i + 1}: ${players}`);
 
-        restaurant.orderPasta('mushrooms', 'onion', 'olives', 'spinach');
-        restaurant.orderPizza('mushrooms');
+    // // 2.
+    // const odds = Object.values(game.odds);
+    // let average = 0;
+    // for (const odd of odds) average += odd;
+    // average /= odds.length;
+    // console.log(average);
 
+    // // Odd of victory Bayern Munich: 1.33
+    // // Odd of draw: 3.25
+    // // Odd of victory Borrussia Dortmund: 6.5
 
-        const str = 'Jonas';
-        const letters = [...str, ' ', 'S.'];
-        console.log(letters); // ['J', 'o', 'n', 'a', 's', ' ', 'S.']
-        console.log(...str); // J o n a s
+    // // 奖金
+    // // 因此，解决方案是循环遍历数组，将数组元素作为对象属性添加，然后在遇到某个元素的新实例时增加计数
+    // const scorers = {};
+    // for (const player of game.scored) {
+    //     scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+    // }
+    // console.log(scorers);
 
+    // const restaurant = {
+    //     name: 'Classico Italiano',
+    //     location: 'Via Angelo Tavanti 23, Firenze, Italy',
+    //     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+    //     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+    //     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    //     openingHours: {
+    //         thu: {
+    //             open: 12,
+    //             close: 22,
+    //         },
+    //         fri: {
+    //             open: 11,
+    //             close: 22,
+    //         },
+    //         sat: {
+    //             open: 0,
+    //             close: 24,
+    //         },
+    //     },
+    //     order: function (starterIndex, mainIndex) {
+    //         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+    //     },
+    //     orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+    //         console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+    //     },
+    //     orderPasta: function (ing1, ing2, ing3) {
+    //         console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+    //     },
+    //     orderPizza: function (mainIngredient, ...otherIngredients) {
+    //         console.log(mainIngredient);
+    //         console.log(otherIngredients);
+    //     }
+    // };
 
-        // const test = {
-        //     calcAge: function (age1 = 3, age2) {
-        //         // console.log(age);
-        //         console.log(age1, age2);
-        //         console.log(typeof age1);
-        //     }
-        // }
+    // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-        // test.calcAge('1', 2);
-        // console.log(1, 2, 3);
+    // for (const item of menu) console.log(item);
+    // // Focaccia Bruschetta Garlic Bread Caprese Salad Pizza Pasta Risotto
+    // for (const item of menu.entries()) {
+    //     // console.log(item);
+    // // [0, 'Focaccia'] [1, 'Bruschetta'] [2, 'Garlic Bread'] [3, 'Caprese Salad'] [4, 'Pizza'] [5, 'Pasta'] [6, 'Risotto']
+    // console.log(`${item[0] + 1} : ${item[1]}`);
+    // // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
+    // }
 
+    // for (const [i, el] of menu.entries()) {
+    //     console.log(`${i + 1}: ${el}`);
+    // // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
+    // }
 
-        // const aa = [1, 2, 3, 4];
-        // console.log(...aa);
+    // console.log([...menu.entries()]);
+    // // 0: (2) [0, 'Focaccia'] 1: (2) [1, 'Bruschetta'] 2: (2) [2, 'Garlic Bread'] 3: (2) [3, 'Caprese Salad'] 4: (2) [4, 'Pizza'] 5: (2) [5, 'Pasta'] 6: (2) [6, 'Risotto']
+    const weekdays = ['mon','tue','wed','thu','fri','sat','sun'];
+    // 3.
+    const  openingHours = {
+            [weekdays[3]]: {
+                open: 12,
+                close: 22,
+            },
+            [weekdays[4]]: {
+                open: 11,
+                close: 22,
+            },
+            [weekdays[5]]: {
+                open: 0,
+                close: 12 + 12,
+            },
+    };
 
-        // const object = function (...object) {
-        //     console.log(object);
-        // }
+    const restaurant = {
+        name: 'Classico Italiano',
+        location: 'Via Angelo Tavanti 23, Firenze, Italy',
+        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+        // ES5 
+        // openingHours : openingHours,
+        // ES6 增强的对象文字
+        // 1.
+        openingHours,
+        // 2.
+        order(starterIndex, mainIndex) {
+            return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+        },
+        orderDelivery({ starterIndex, mainIndex, time, address }) {
+            console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+        },
+        orderPasta(ing1, ing2, ing3) {
+            console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+        },
+        orderPizza(mainIngredient, ...otherIngredients) {
+            console.log(mainIngredient);
+            console.log(otherIngredients);
+        }
+    };
 
-        // object({ a: 1, b: 2 }); // [{…}] 0: {a: 1, b: 2} length: 1
+    const properties = Object.keys(openingHours);
+    console.log(properties);
 
+    let openStr = `We are open on ${properties.length} days: `;
 
+    for (const day of properties) {
+        // console.log(day);
+        openStr += `${day}, `;
+    }
+    console.log(openStr);
 
-        // const { name, openingHours, categories } = restaurant;
-        // console.log(name, openingHours, categories);
-        // // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
-        // console.log(name === restaurant.name); // true
+    // Property VALUES
+    const values = Object.values(openingHours);
+    console.log(values);
 
-        // // 自定义属性名称
-        // const {
-        //     name: restaurantName,
-        //     openingHours: hours,
-        //     categories: tags,
-        // } = restaurant;
-        // console.log(restaurantName, hours, tags);
-        // // Classico Italiano {thu: {…}, fri: {…}, sat: {…}} (4) ['Italian', 'Pizzeria', 'Vegetarian', 'Organic']
+    // Entire object
+    const entries = Object.entries(openingHours);
+    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
-        // // 默认值
-        // const { menu = [], starterMenu: starters = [] } = restaurant;
-        // console.log(menu, starters);
-        // console.log(menu in restaurant); // false
-
-        // // 变异变量
-        // let a = 111;
-        // let b = 999;
-        // let obj = { a: 23, b: 7, c: 14 };
-        // ({ a, b } = obj);
-        // console.log(obj);
-        // obj = {};
-        // console.log(obj);
-        // console.log(a, b); // 23 7
-
-        // // 嵌套对象
-        // const { fri: { open, close } } = openingHours;
-        // console.log(open, close);
-
-        // // 函数参数解构
-        // restaurant.orderDelivery({
-        //     time: '22:30',
-        //     address: 'Via del Sole, 21',
-        //     mainIndex: 2,
-        //     starterIndex: 2,
-        // });
-
-        // const arr = [7, 8, 9];
-        // const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-        // console.log(badNewArr); // (5) [1, 2, 7, 8, 9]
-
-        // const newArr = [1, 2, ...arr];
-        // console.log(newArr); // (5) [1, 2, 7, 8, 9]
-
-        // console.log(...newArr); // 1 2 7 8 9
-        // console.log(1, 2, 7, 8, 9);
-
-        // const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-        // console.log(newMenu); // Array(4) 0: "Pizza" 1: "Pasta" 2: "Risotto" 3: "Gnocci" length: 4
-
-        // // Copy array
-        // const mainMenuCopy = [...restaurant.mainMenu];
-        // console.log(mainMenuCopy);
-
-        // // Join 2 arrays
-        // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-        // console.log(menu);
-
-        // // Iterables(可重复的): arrays, strings, maps, sets. NOT objects
-        // const str = 'Jonas';
-        // const letters = [...str, ' ', 'S.'];
-        // console.log(letters);
-        // console.log(...str);
-        // console.log(`${ ...str } Schmedtmann`) // 报错
-
-        // Real-world example
-        // const ingredients = [
-        //     prompt("Let's make pasta! Ingredient 1?"),
-        //     prompt('Ingredient 2?'),
-        //     prompt('Ingredient 3'),
-        // ];
-        // console.log(ingredients);
-
-        // restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-        // restaurant.orderPasta(...ingredients);
-
-        // Object
-        // const newRestaurant = {
-        //     foundedIn: 1998,
-        //     ...restaurant,
-        //     founder: 'Guiseppe'
-        // };
-        // console.log(newRestaurant);
-
-        // const restaurantCopy = { ...newRestaurant };
-        // restaurantCopy.mainMenu.push('111');
-        // console.log(newRestaurant.mainMenu, restaurantCopy.mainMenu);
-
-        // console.log(restaurantCopy.name);
-        // console.log(restaurant.name);
-
-        // const a = [1, 2, 3, 4, 5];
-        // console.log(...a);
-
+    // for (const [key, {open, close}] of entries) {
+    //     console.log(`On ${key} we open at ${open} and close at ${close}`);
+    // }
 
     </script>
 </body>
