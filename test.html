@@ -11,210 +11,25 @@
 <body>
     <script>
 
-    /* 
-    让我们继续使用我们的足球投注应用程序！
+        /*
+          1. 在游戏中循环。得分数组并将每个球员的名字以及进球编号打印到控制台上（例如：“进球1：勒万多夫斯基”）
 
-    1. 循环 game.scored 数组并将每个玩家的姓名连同进球号码一起打印到控制台（例如：“Goal 1: Lewandowski”）
-    2. 使用循环计算平均odds并将其记录到控制台（我们已经研究过如何计算平均数，如果您不记得可以去检查）
-    3. 将 3 个赔率打印到控制台，但格式很好，就像这样：
-        拜仁慕尼黑获胜几率：1.33
-        平局几率：3.25
-        多特蒙德胜利几率：6.5
-    直接从游戏对象中获取团队名称，不要对其进行硬编码（“draw”除外）。 提示：注意赔率和游戏对象如何具有相同的属性名称😉
+          2、使用循环计算平均奇数并将其发送到控制台（我们已经研究了如何计算平均数，如果不记得，可以去检查）
+         
+          3、在控制台上打印3个赔率
+            格式化方式，例如：
+            拜仁慕尼黑的奇数胜利：1。33
+            图纸编号：3.25
+            俄罗斯多特蒙德队奇数获胜：6.5
+            直接从游戏对象获取球队名称，不要硬编码（平局除外）。提示：注意赔率和游戏对象如何具有相同的属性名称
 
-    奖励：创建一个名为“scorers”的对象，其中包含作为属性得分的球员的姓名，以及作为值的进球数。 在这个游戏中，它看起来像这样：
-        {
-            Gnarby: 1,
-            Hummels: 1,
-            Lewandowski: 2
-        }
-
-    祝您好运 😀
-    */
-    // const game = {
-    // team1: 'Bayern Munich',
-    // team2: 'Borrussia Dortmund',
-    // players: [
-    //     [
-    //     'Neuer',
-    //     'Pavard',
-    //     'Martinez',
-    //     'Alaba',
-    //     'Davies',
-    //     'Kimmich',
-    //     'Goretzka',
-    //     'Coman',
-    //     'Muller',
-    //     'Gnarby',
-    //     'Lewandowski',
-    //     ],
-    //     [
-    //     'Burki',
-    //     'Schulz',
-    //     'Hummels',
-    //     'Akanji',
-    //     'Hakimi',
-    //     'Weigl',
-    //     'Witsel',
-    //     'Hazard',
-    //     'Brandt',
-    //     'Sancho',
-    //     'Gotze',
-    //     ],
-    // ],
-    // score: '4:0',
-    // scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-    // date: 'Nov 9th, 2037',
-    // odds: {
-    //     team1: 1.33,
-    //     x: 3.25,
-    //     team2: 6.5,
-    // },
-    // };
-
-    // // 1. 
-    // for (const [i, players] of game.scored.entries())
-    // console.log(`Goal ${i + 1}: ${players}`);
-
-    // // 2.
-    // const odds = Object.values(game.odds);
-    // let average = 0;
-    // for (const odd of odds) average += odd;
-    // average /= odds.length;
-    // console.log(average);
-
-    // // Odd of victory Bayern Munich: 1.33
-    // // Odd of draw: 3.25
-    // // Odd of victory Borrussia Dortmund: 6.5
-
-    // // 奖金
-    // // 因此，解决方案是循环遍历数组，将数组元素作为对象属性添加，然后在遇到某个元素的新实例时增加计数
-    // const scorers = {};
-    // for (const player of game.scored) {
-    //     scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-    // }
-    // console.log(scorers);
-
-    // const restaurant = {
-    //     name: 'Classico Italiano',
-    //     location: 'Via Angelo Tavanti 23, Firenze, Italy',
-    //     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-    //     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-    //     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-    //     openingHours: {
-    //         thu: {
-    //             open: 12,
-    //             close: 22,
-    //         },
-    //         fri: {
-    //             open: 11,
-    //             close: 22,
-    //         },
-    //         sat: {
-    //             open: 0,
-    //             close: 24,
-    //         },
-    //     },
-    //     order: function (starterIndex, mainIndex) {
-    //         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
-    //     },
-    //     orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
-    //         console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
-    //     },
-    //     orderPasta: function (ing1, ing2, ing3) {
-    //         console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
-    //     },
-    //     orderPizza: function (mainIngredient, ...otherIngredients) {
-    //         console.log(mainIngredient);
-    //         console.log(otherIngredients);
-    //     }
-    // };
-
-    // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-
-    // for (const item of menu) console.log(item);
-    // // Focaccia Bruschetta Garlic Bread Caprese Salad Pizza Pasta Risotto
-    // for (const item of menu.entries()) {
-    //     // console.log(item);
-    // // [0, 'Focaccia'] [1, 'Bruschetta'] [2, 'Garlic Bread'] [3, 'Caprese Salad'] [4, 'Pizza'] [5, 'Pasta'] [6, 'Risotto']
-    // console.log(`${item[0] + 1} : ${item[1]}`);
-    // // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
-    // }
-
-    // for (const [i, el] of menu.entries()) {
-    //     console.log(`${i + 1}: ${el}`);
-    // // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
-    // }
-
-    // console.log([...menu.entries()]);
-    // // 0: (2) [0, 'Focaccia'] 1: (2) [1, 'Bruschetta'] 2: (2) [2, 'Garlic Bread'] 3: (2) [3, 'Caprese Salad'] 4: (2) [4, 'Pizza'] 5: (2) [5, 'Pasta'] 6: (2) [6, 'Risotto']
-    const weekdays = ['mon','tue','wed','thu','fri','sat','sun'];
-    // 3.
-    const  openingHours = {
-            [weekdays[3]]: {
-                open: 12,
-                close: 22,
-            },
-            [weekdays[4]]: {
-                open: 11,
-                close: 22,
-            },
-            [weekdays[5]]: {
-                open: 0,
-                close: 12 + 12,
-            },
-    };
-
-    const restaurant = {
-        name: 'Classico Italiano',
-        location: 'Via Angelo Tavanti 23, Firenze, Italy',
-        categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-        starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-        mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-        // ES5 
-        // openingHours : openingHours,
-        // ES6 增强的对象文字
-        // 1.
-        openingHours,
-        // 2.
-        order(starterIndex, mainIndex) {
-            return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
-        },
-        orderDelivery({ starterIndex, mainIndex, time, address }) {
-            console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
-        },
-        orderPasta(ing1, ing2, ing3) {
-            console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
-        },
-        orderPizza(mainIngredient, ...otherIngredients) {
-            console.log(mainIngredient);
-            console.log(otherIngredients);
-        }
-    };
-
-    const properties = Object.keys(openingHours);
-    console.log(properties);
-
-    let openStr = `We are open on ${properties.length} days: `;
-
-    for (const day of properties) {
-        // console.log(day);
-        openStr += `${day}, `;
-    }
-    console.log(openStr);
-
-    // Property VALUES
-    const values = Object.values(openingHours);
-    console.log(values);
-
-    // Entire object
-    const entries = Object.entries(openingHours);
-    const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-
-    // for (const [key, {open, close}] of entries) {
-    //     console.log(`On ${key} we open at ${open} and close at ${close}`);
-    // }
-
+            奖励：创建一个名为“scorers”的对象，其中包含作为属性得分的球员的姓名，以及作为值的进球数，在这个游戏中，它将如下所示：
+            {
+                Gnarby: 1,
+                Hummels: 1,
+                Lewandowski: 2
+            }
+        */
     </script>
 </body>
 
