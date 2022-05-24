@@ -1,36 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
+          /*
+        我们正在构建一个足球投注应用程序（我的美国朋友的足球😅）！
 
-        /*
-          1. 在游戏中循环。得分数组并将每个球员的名字以及进球编号打印到控制台上（例如：“进球1：勒万多夫斯基”）
+        假设我们从 Web 服务获取有关某个游戏的数据（如下）。在这个挑战中，我们将使用数据。所以这是你的任务：
 
-          2、使用循环计算平均奇数并将其发送到控制台（我们已经研究了如何计算平均数，如果不记得，可以去检查）
-         
-          3、在控制台上打印3个赔率
-            格式化方式，例如：
-            拜仁慕尼黑的奇数胜利：1。33
-            图纸编号：3.25
-            俄罗斯多特蒙德队奇数获胜：6.5
-            直接从游戏对象获取球队名称，不要硬编码（平局除外）。提示：注意赔率和游戏对象如何具有相同的属性名称
+        1.为每支球队创建一个球员数组（变量'players1'和'players2'）
+        2.任何球员阵列中的第一个球员是守门员，其他球员是场上球员。对于拜仁慕尼黑（第 1 队），创建一个包含守门员姓名的变量 ('gk')，以及一个包含所有剩余 10 名场上球员的数组 ('fieldPlayers')
+        3. 创建一个数组“allPlayers”，包含两支球队的所有球员（22 名球员）
+        4. 比赛期间，拜仁慕尼黑（1队）使用了3名替补球员。因此，创建一个新数组 ('players1Final')，其中包含所有原始 team1 球员以及 'Thiago'、'Coutinho' 和 'Perisic'
+        5. 基于game.odds对象，为每个奇数创建一个变量（称为'team1'、'draw'和'team2'）
+        6. 编写一个函数（'printGoals'），接收任意数量的球员姓名（不是数组）并将每个球员姓名连同总进球数（传入的球员姓名数）打印到控制台)
+        7. 赔率低的队伍获胜的可能性更大。打印到控制台哪个团队更有可能获胜，而不使用 if/else 语句或三元运算符。
 
-            奖励：创建一个名为“scorers”的对象，其中包含作为属性得分的球员的姓名，以及作为值的进球数，在这个游戏中，它将如下所示：
-            {
-                Gnarby: 1,
-                Hummels: 1,
-                Lewandowski: 2
-            }
+        6 人的测试数据：使用球员“戴维斯”、“穆勒”、“莱万多夫斯基”和“基米希”。然后，再次使用来自 game.scored 的玩家调用该函数
+
+        祝你好运😀
         */
-    </script>
-</body>
+      const restaurant = {
+          name: "Classico Italiano",
+          location: "Via Angelo Tavanti 23, Firenze, Italy",
+          categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+          starterMenu: [
+          "Focaccia",
+          "Bruschetta",
+          "Garlic Bread",
+          "Caprese Salad",
+          ],
+          mainMenu: ["Pizza", "Pasta", "Risotto"],
+          openingHours: {
+          thu: {
+              open: 12,
+              close: 22,
+          },
+          fri: {
+              open: 11,
+              close: 22,
+          },
+          sat: {
+              open: 0,
+              close: 24,
+          },
+          },
+          order: function (starterIndex, mainIndex) {
+          return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+          },
+          orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+          console.log(
+              `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+          );
+          },
+      };
 
+      const ordersSet = new Set([
+          "Pasta",
+          "Pizza",
+          "Pizza",
+          "Risotto",
+          "Pasta",
+          "Pizza",
+      ]);
+      ordersSet.add({ a: 1, b: 2 });
+      const b = ordersSet.keys();
+      console.log(b.2);
+      console.log(ordersSet);
+
+      console.log(new Set("Jonas"));
+
+      console.log(ordersSet.size);
+      console.log(ordersSet.has("Pizza"));
+      console.log(ordersSet.has("Bread"));
+      ordersSet.add("Garlic Bread");
+      ordersSet.add("Garlic Bread");
+      ordersSet.delete("Risotto");
+      // ordersSet.clear();
+      console.log(ordersSet);
+
+      for (const order of ordersSet) console.log(order);
+
+      // Example
+      const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+      const staffUnique = [...new Set(staff)];
+      console.log(staffUnique);
+
+      console.log(
+          new Set(["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"]).size
+      );
+
+      console.log(new Set("jonasschmedtmann").size);
+    </script>
+  </body>
 </html>
