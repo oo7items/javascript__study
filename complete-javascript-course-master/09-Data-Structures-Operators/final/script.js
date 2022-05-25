@@ -699,6 +699,22 @@ rest2.numGuests ??= 10;
 // rest2.owner = rest2.owner && '<ANONYMOUS>';
 rest1.owner &&= '<ANONYMOUS>';
 rest2.owner &&= '<ANONYMOUS>';
+asdassdas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 console.log(rest1);
 console.log(rest2);
