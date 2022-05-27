@@ -47,20 +47,63 @@
 
         // console.log(new Set('jonasschmedtmann').size);
 
-        let mySet = new Set();
-        mySet.add(1);
-        let o = { a: 1, b: 2 };
-        mySet.add(o);
-        mySet.add({ a: 1, b: 2 });
+        // const rest = ['a', 'b', 'c'];
+        const restaurant = {
+            name: 'Classico Italiano',
+            location: 'Via Angelo Tavanti 23, Firenze, Italy',
+            categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+            starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+            mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+            openingHours: {
+                thu: {
+                    open: 12,
+                    close: 22,
+                },
+                fri: {
+                    open: 11,
+                    close: 22,
+                },
+                sat: {
+                    open: 0,
+                    close: 24,
+                },
+            },
+            order: function (starterIndex, mainIndex) {
+                return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+            },
+            orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+                console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+            },
+            orderPasta: function (ing1, ing2, ing3) {
+                console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
+            },
+            orderPizza: function (mainIngredient, ...otherIngredients) {
+                console.log(mainIngredient);
+                console.log(otherIngredients);
+            }
+        };
 
-        console.log(mySet.vlaue = mySet.key)
-        console.log(mySet.entries());
+        const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-        const a = [{ a: 2 }, { b: 2 }];
-        for (const { a: b, b: c } of a) {
-            console.log(b, c);
+        for (const item of menu) console.log(item);
+        // Focaccia Bruschetta Garlic Bread Caprese Salad Pizza Pasta Risotto
+        for (const item of menu.entries()) {
+            // console.log(item);
+            // [0, 'Focaccia'] [1, 'Bruschetta'] [2, 'Garlic Bread'] [3, 'Caprese Salad'] [4, 'Pizza'] [5, 'Pasta'] [6, 'Risotto']
+            console.log(`${item[0] + 1} : ${item[1]}`);
+            // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
         }
 
+        for (const [i, el] of menu.entries()) {
+            console.log(`${i + 1}: ${el}`);
+            // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
+        }
+
+        console.log([...menu.entries()]);
+        // 0: (2) [0, 'Focaccia'] 1: (2) [1, 'Bruschetta'] 2: (2) [2, 'Garlic Bread'] 3: (2) [3, 'Caprese Salad'] 4: (2) [4, 'Pizza'] 5: (2) [5, 'Pasta'] 6: (2) [6, 'Risotto']
+
+        const a = new Set(['1', '1', '1', '2', '3', '4']); // 1 2 3 4
+        console.log(a);
 
     </script>
 </body>
