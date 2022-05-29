@@ -1,111 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <m eta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
+      /*
+            编写一个程序，该程序接收以UnderScore_case编写的可变名称列表，然后将其转换为骆驼。
 
-        // const ordersSet = new Set([
-        //     'Pasta',
-        //     'Pizza',
-        //     'Pizza',
-        //     'Risotto',
-        //     'Pasta',
-        //     'Pizza',
-        // ]);
+            输入将来自插入DOM的文本方面（请参见下面的代码），然后按下按钮时进行转换。
 
-        // console.log(ordersSet); // [[Entries]] 0: "Pasta" 1: "Pizza" 2: "Garlic Bread" size: 3
+            此测试数据（粘贴到Textarea）
+            underscore_case
+            some_variable
+            calculate_age
+            delayed_departure
 
-        // console.log(new Set('Jonas')); // [[Entries]] 0: "J" 1: "o" 2: "n" 3: "a" 4: "s" size: 5
+            应该产生此输出（5个单独的控制台。log输出）
+            下半年✅
+            firstname✅✅
+            一些可变性✅✅✅
+            计算✅✅✅✅
+            延迟departure✅✅✅✅✅
 
-        // console.log(ordersSet.size); // 3
-        // console.log(ordersSet.has('Pizza')); // true
-        // console.log(ordersSet.has('Bread')); // false
-        // ordersSet.add('Garlic Bread');
-        // ordersSet.add('Garlic Bread');
-        // ordersSet.delete('Risotto');
-        // // ordersSet.clear();
-        // console.log(ordersSet); //  [[Entries]] 0: "Pasta" 1: "Pizza" 2: "Garlic Bread" size: 3
+            提示1：请记住哪个角色定义了Textarea中的新行
+            提示2：该解决方案只需要为2个单词制成的变量工作，例如A_B
+            提示3：开始不必担心✅。只有在您具有可变名称转换工作之后才能解决😉
+            提示4：这一挑战是故意的，因此，如果您卡住了，请开始观看解决方案。然后暂停并继续！
 
-        // for (const order of ordersSet) console.log(order);
+            之后，使用自己的测试数据进行测试！
 
-        // // Example
-        // const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
-        // // Set集合是可迭代的
-        // const staffUnique = [...new Set(staff)];
-        // console.log(staffUnique);
+      祝你好运
+      */
 
-        // console.log(
-        //     new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
-        // );
+      const flight = "LH234";
+      const jonas = {
+        name: "Jonas Schmedtmann",
+        passport: 24739479284,
+      };
 
-        // console.log(new Set('jonasschmedtmann').size);
+      const checkIn = function (flightNum, passenger) {
+        flightNum = "LH999";
+        passenger.name = "Mr. " + passenger.name;
 
-        // const rest = ['a', 'b', 'c'];
-        const restaurant = {
-            name: 'Classico Italiano',
-            location: 'Via Angelo Tavanti 23, Firenze, Italy',
-            categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-            starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-            mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-            openingHours: {
-                thu: {
-                    open: 12,
-                    close: 22,
-                },
-                fri: {
-                    open: 11,
-                    close: 22,
-                },
-                sat: {
-                    open: 0,
-                    close: 24,
-                },
-            },
-            order: function (starterIndex, mainIndex) {
-                return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
-            },
-            orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
-                console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
-            },
-            orderPasta: function (ing1, ing2, ing3) {
-                console.log(`Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`);
-            },
-            orderPizza: function (mainIngredient, ...otherIngredients) {
-                console.log(mainIngredient);
-                console.log(otherIngredients);
-            }
-        };
-
-        const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-
-        for (const item of menu) console.log(item);
-        // Focaccia Bruschetta Garlic Bread Caprese Salad Pizza Pasta Risotto
-        for (const item of menu.entries()) {
-            // console.log(item);
-            // [0, 'Focaccia'] [1, 'Bruschetta'] [2, 'Garlic Bread'] [3, 'Caprese Salad'] [4, 'Pizza'] [5, 'Pasta'] [6, 'Risotto']
-            console.log(`${item[0] + 1} : ${item[1]}`);
-            // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
+        if (passenger.passport === 24739479284) {
+          alert("Checked in");
+        } else {
+          alert("Wrong passport!");
         }
+      };
 
-        for (const [i, el] of menu.entries()) {
-            console.log(`${i + 1}: ${el}`);
-            // 1 : Focaccia 2 : Bruschetta 3 : Garlic Bread 4 : Caprese Salad 5 : Pizza 6 : Pasta 7 : Risotto
-        }
+      checkIn(flight, jonas);
+      console.log(flight); // LH234
+      console.log(jonas); // Object name: "Mr. Jonas Schmedtmann" passport: 24739479284 [[Prototype]]: Object
 
-        console.log([...menu.entries()]);
-        // 0: (2) [0, 'Focaccia'] 1: (2) [1, 'Bruschetta'] 2: (2) [2, 'Garlic Bread'] 3: (2) [3, 'Caprese Salad'] 4: (2) [4, 'Pizza'] 5: (2) [5, 'Pasta'] 6: (2) [6, 'Risotto']
-
-        const a = new Set(['1', '1', '1', '2', '3', '4']); // 1 2 3 4
-        console.log(a);
-
+      // Is the same as doing...
+      // const flightNum = flight;
+      // const passenger = jonas;
+      // console.log(flightNum, passenger);
     </script>
-</body>
-
+  </body>
 </html>
