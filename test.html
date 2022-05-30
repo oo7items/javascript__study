@@ -38,57 +38,72 @@
         祝你好运
         */
 
-        const flight = "LH234";
-        const jonas = {
-            name: "Jonas Schmedtmann",
-            passport: 24739479284,
-        };
+        // const flight = "LH234";
+        // const jonas = {
+        //     name: "Jonas Schmedtmann",
+        //     passport: 24739479284,
+        // };
 
-        const checkIn = function (flightNum, passenger) {
-            flightNum = "LH999";
-            passenger.name = "Mr. " + passenger.name;
+        // const checkIn = function (flightNum, passenger) {
+        //     flightNum = "LH999";
+        //     passenger.name = "Mr. " + passenger.name;
 
-            if (passenger.passport === 24739479284) {
-                alert("Checked in");
-            } else {
-                alert("Wrong passport!");
+        //     if (passenger.passport === 24739479284) {
+        //         alert("Checked in");
+        //     } else {
+        //         alert("Wrong passport!");
+        //     }
+        // };
+
+        // checkIn(flight, jonas);
+        // console.log(flight); // LH234
+        // console.log(jonas); // Object name: "Mr. Jonas Schmedtmann" passport: 24739479284 [[Prototype]]: Object
+
+        // // Is the same as doing...
+        // // const flightNum = flight;
+        // // const passenger = jonas;
+        // // console.log(flightNum, passenger);
+        // const oneWord = function (str) {
+        //     return str.replace(/ /g, '').toLowerCase();
+        // };
+
+        // const upperFirstWord = function (str) {
+        //     const [first, ...others] = str.split(' ');
+        //     return [first.toUpperCase(), ...others].join(' ');
+        // };
+
+        // // Higher-order function
+        // const transformer = function (str, fn) {
+        //     console.log(`Original string: ${str}`);
+        //     console.log(`Transformed string: ${fn(str)}`);
+
+        //     console.log(`Transformed by: ${fn.name}`);
+        // };
+
+        // transformer('JavaScript is the best!', upperFirstWord);
+        // transformer('JavaScript is the best!', oneWord);
+
+        // // JS uses callbacks all the time
+        // const high5 = function () {
+        //     console.log('👋');
+        // };
+        // document.body.addEventListener('click', high5);
+        // ['Jonas', 'Martha', 'Adam'].forEach(high5);
+
+        const greet = function (greeting) {
+            return function (name) {
+                console.log(`${greeting} ${name}`);
             }
-        };
+        }
 
-        checkIn(flight, jonas);
-        console.log(flight); // LH234
-        console.log(jonas); // Object name: "Mr. Jonas Schmedtmann" passport: 24739479284 [[Prototype]]: Object
+        const greeterHey = greet('Hey');
+        greeterHey('Jonas');
+        greeterHey('Steven');
 
-        // Is the same as doing...
-        // const flightNum = flight;
-        // const passenger = jonas;
-        // console.log(flightNum, passenger);
-        const oneWord = function (str) {
-            return str.replace(/ /g, '').toLowerCase();
-        };
+        greet('Hello')('Jonas');
 
-        const upperFirstWord = function (str) {
-            const [first, ...others] = str.split(' ');
-            return [first.toUpperCase(), ...others].join(' ');
-        };
-
-        // Higher-order function
-        const transformer = function (str, fn) {
-            console.log(`Original string: ${str}`);
-            console.log(`Transformed string: ${fn(str)}`);
-
-            console.log(`Transformed by: ${fn.name}`);
-        };
-
-        transformer('JavaScript is the best!', upperFirstWord);
-        transformer('JavaScript is the best!', oneWord);
-
-        // JS uses callbacks all the time
-        const high5 = function () {
-            console.log('👋');
-        };
-        document.body.addEventListener('click', high5);
-        ['Jonas', 'Martha', 'Adam'].forEach(high5);
+        // Challenge
+        const greetArr = greeting => name => console.log(`${greeting} ${name}`);
     </script>
 </body>
 
