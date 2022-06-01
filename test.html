@@ -10,42 +10,110 @@
 
 <body>
     <script>
-        /*
-                编写一个程序，该程序接收以UnderScore_case编写的可变名称列表，然后将其转换为骆驼。
-  
-                输入将来自插入DOM的文本方面（请参见下面的代码），然后按下按钮时进行转换。
-  
-                此测试数据（粘贴到Textarea）
-                underscore_case
-                some_variable
-                calculate_age
-                delayed_departure
-  
-                应该产生此输出（5个单独的控制台。log输出）
-                下半年✅
-                firstname✅✅
-                一些可变性✅✅✅
-                计算✅✅✅✅
-                延迟departure✅✅✅✅✅
-  
-                提示1：请记住哪个角色定义了Textarea中的新行
-                提示2：该解决方案只需要为2个单词制成的变量工作，例如A_B
-                提示3：开始不必担心✅。只有在您具有可变名称转换工作之后才能解决😉
-                提示4：这一挑战是故意的，因此，如果您卡住了，请开始观看解决方案。然后暂停并继续！
-  
-                之后，使用自己的测试数据进行测试！
-  
-          祝你好运
-          */
+        ///////////////////////////////////////
+        // The call and apply Methods
+        // const lufthansa = {
+        //     airline: 'Lufthansa',
+        //     iataCode: 'LH',
+        //     bookings: [],
+        //     // book: function() {}
+        //     book(flightNum, name) {
+        //         console.log(
+        //             `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+        //         );
+        //         this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+        //     },
+        // };
 
+        // lufthansa.book(239, 'Jonas Schmedtmann');
+        // lufthansa.book(635, 'John Smith');
 
+        // const eurowings = {
+        //     airline: 'Eurowings',
+        //     iataCode: 'EW',
+        //     bookings: [],
+        // };
 
+        // const book = lufthansa.book;
 
-        function tests() {
-            console.log('hhaha')
-        }
-        tests = 2;
-        console.log(tests);
+        // // Does NOT work
+        // // book(23, 'Sarah Williams');
+
+        // // Call method
+        // book.call(eurowings, 23, 'Sarah Williams');
+        // console.log(eurowings);
+
+        // book.call(lufthansa, 239, 'Mary Cooper');
+        // console.log(lufthansa);
+
+        // const swiss = {
+        //     airline: 'Swiss Air Lines',
+        //     iataCode: 'LX',
+        //     bookings: [],
+        // };
+
+        // book.call(swiss, 583, 'Mary Cooper');
+
+        // // Apply method
+        // const flightData = [583, 'George Cooper'];
+        // book.apply(swiss, flightData);
+        // console.log(swiss);
+
+        // book.call(swiss, ...flightData);
+
+        // ///////////////////////////////////////
+        // // The bind Method
+        // // book.call(eurowings, 23, 'Sarah Williams');
+
+        // const bookEW = book.bind(eurowings);
+        // const bookLH = book.bind(lufthansa);
+        // const bookLX = book.bind(swiss);
+
+        // bookEW(23, 'Steven Williams');
+
+        // const bookEW23 = book.bind(eurowings, 23);
+        // bookEW23('Jonas Schmedtmann');
+        // bookEW23('Martha Cooper');
+
+        // // With Event Listeners
+        // lufthansa.planes = 300;
+        // lufthansa.buyPlane = function () {
+        //     console.log(this);
+
+        //     this.planes++;
+        //     console.log(this.planes);
+        // };
+        // // lufthansa.buyPlane();
+
+        // document
+        //     .querySelector('.buy')
+        //     .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+        // // Partial application 
+        // const addTax = (rate, value) => value + value * rate;
+        // console.log(addTax(0.1, 200));
+
+        // const addVAT = addTax.bind(null, 0.23);
+        // // addVAT = value => value + value * 0.23;
+
+        // console.log(addVAT(100), '1111');
+        // console.log(addVAT(23));
+
+        // const addTaxRate = function (rate) {
+        //     return function (value) {
+        //         return value + value * rate;
+        //     };
+        // };
+        // const addVAT2 = addTaxRate(0.23);
+        // console.log(addVAT2(100));
+        // console.log(addVAT2(23));
+
+        // Partial application
+        const addTax = (rate, value) => value + value * rate;
+        console.log(addTax(0.1, 200));
+        const addVAT = addTax.bind(null, 0.23);
+        addVAT
+
     </script>
 </body>
 
