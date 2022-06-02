@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .no2 {
+        position: relative;
+        
 
+    }
+
+    .no2 span {
+        position: absolute;
+        margin: 30px;
+    }
+</style>
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,111 +19,74 @@
     <title>Document</title>
 </head>
 
+<button class="poll">question</button>
+<div>1</div>
+<div class="no2">2
+    <span>2</span>
+</div>
 <body>
     <script>
-        ///////////////////////////////////////
-        // The call and apply Methods
-        // const lufthansa = {
-        //     airline: 'Lufthansa',
-        //     iataCode: 'LH',
-        //     bookings: [],
-        //     // book: function() {}
-        //     book(flightNum, name) {
-        //         console.log(
-        //             `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-        //         );
-        //         this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+        /*
+        让我们构建一个简单的投票应用程序！
+        
+        民意调查有一个问题、一组可供人们选择的选项，以及一个包含每个选项的回复数的数组。此数据存储在下面的启动器对象中。
+        
+        以下是您的任务：
+        
+        1. 在“poll”对象上创建一个名为“registerNewAnswer”的方法。该方法做了两件事：
+          1.1。显示提示窗口，供用户输入所选选项的编号。提示应如下所示：
+                你最喜欢的编程语言是什么？
+                0：JavaScript
+                1：蟒蛇
+                2：生锈
+                3：C++
+                （写选项号）
+          
+          1.2.根据输入数字，更新 answers 数组。例如，如果选项为 3，则将数组的位置 3 处的值增加 1。确保检查输入是否为数字以及该数字是否有意义（例如答案 52 没有意义，对吗？）
+        2. 每当用户点击“Answer poll”按钮时调用此方法。
+        3. (生成两个方法) 创建一个显示投票结果的方法“displayResults”。该方法将字符串作为输入（称为“类型”），可以是“字符串”或“数组”。如果 type 是 'array'，只需使用 console.log() 显示结果数组。这应该是默认选项。如果 type 为 'string'，则显示类似“Poll results are 13, 2, 4, 1”的字符串。
+        4. 在每个“registerNewAnswer”方法调用结束时运行“displayResults”方法。
+        
+        提示：使用您在本节和上一节中学到的许多工具😉
+        
+        奖励：使用“displayResults”方法显示测试数据中的 2 个数组。同时使用 'array' 和 'string' 选项。不要将数组放在 poll 对象中！那么在这种情况下 this 关键字应该是什么样子呢？
+        
+        奖励测试数据 1：[5、2、3]
+        奖励测试数据 2：[1、5、3、9、6、1]
+        
+        祝你好运😀
+        */
+
+        // const poll = {
+        //     question: 'What is your favourite programming language?',
+        //     options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+        //     // This generates [0, 0, 0, 0]. More in the next section 😊
+        //     answers: new Array(4).fill(0),
+        //     registerNewAnswer() {
+        //         // Get answer
+        //         const answer = Number(
+        //             prompt(
+        //                 `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+        //             )
+        //         )
+        //         typeof answer === 'number' && answer < this.answers.length && this.answers[answer]++;
+
+        //         // Display answer
+        //         this.displayResults();
+        //         this.displayResults('string');
         //     },
-        // };
-
-        // lufthansa.book(239, 'Jonas Schmedtmann');
-        // lufthansa.book(635, 'John Smith');
-
-        // const eurowings = {
-        //     airline: 'Eurowings',
-        //     iataCode: 'EW',
-        //     bookings: [],
-        // };
-
-        // const book = lufthansa.book;
-
-        // // Does NOT work
-        // // book(23, 'Sarah Williams');
-
-        // // Call method
-        // book.call(eurowings, 23, 'Sarah Williams');
-        // console.log(eurowings);
-
-        // book.call(lufthansa, 239, 'Mary Cooper');
-        // console.log(lufthansa);
-
-        // const swiss = {
-        //     airline: 'Swiss Air Lines',
-        //     iataCode: 'LX',
-        //     bookings: [],
-        // };
-
-        // book.call(swiss, 583, 'Mary Cooper');
-
-        // // Apply method
-        // const flightData = [583, 'George Cooper'];
-        // book.apply(swiss, flightData);
-        // console.log(swiss);
-
-        // book.call(swiss, ...flightData);
-
-        // ///////////////////////////////////////
-        // // The bind Method
-        // // book.call(eurowings, 23, 'Sarah Williams');
-
-        // const bookEW = book.bind(eurowings);
-        // const bookLH = book.bind(lufthansa);
-        // const bookLX = book.bind(swiss);
-
-        // bookEW(23, 'Steven Williams');
-
-        // const bookEW23 = book.bind(eurowings, 23);
-        // bookEW23('Jonas Schmedtmann');
-        // bookEW23('Martha Cooper');
-
-        // // With Event Listeners
-        // lufthansa.planes = 300;
-        // lufthansa.buyPlane = function () {
-        //     console.log(this);
-
-        //     this.planes++;
-        //     console.log(this.planes);
-        // };
-        // // lufthansa.buyPlane();
-
-        // document
-        //     .querySelector('.buy')
-        //     .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
-
-        // // Partial application 
-        // const addTax = (rate, value) => value + value * rate;
-        // console.log(addTax(0.1, 200));
-
-        // const addVAT = addTax.bind(null, 0.23);
-        // // addVAT = value => value + value * 0.23;
-
-        // console.log(addVAT(100), '1111');
-        // console.log(addVAT(23));
-
-        // const addTaxRate = function (rate) {
-        //     return function (value) {
-        //         return value + value * rate;
-        //     };
-        // };
-        // const addVAT2 = addTaxRate(0.23);
-        // console.log(addVAT2(100));
-        // console.log(addVAT2(23));
-
-        // Partial application
-        const addTax = (rate, value) => value + value * rate;
-        console.log(addTax(0.1, 200));
-        const addVAT = addTax.bind(null, 0.23);
-        addVAT
+        //     displayResults(type = 'array') {
+        //         if (type == 'array') {
+        //             console.log(this.answers);
+        //         } else if (type === 'string') {
+        //             // Poll results are 13, 2, 4, 1
+        //             console.log(`Poll results are ${this.answers.join(', ')}`)
+        //         }
+        //     }
+        // }
+        // document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+        // poll.displayResults.call({ answers: [5, 2, 2] }, 'string');
+        // poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 
     </script>
 </body>
