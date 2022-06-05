@@ -33,6 +33,7 @@ const account4 = {
   pin: 4444,
 };
 
+// 账户
 const accounts = [account1, account2, account3, account4];
 
 // Elements
@@ -65,12 +66,38 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
+// 货币
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
 
+// 动作
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// btnLogin.addEventListener('click', function (e) {
+//   e.preventDefault();
+//   const loginUsername = inputLoginUsername.value;
+//   const loginPin = inputLoginPin.value;
+//   console.log(loginUsername, loginPin);
+// });
+
+const displayMovements = function (movement) {
+  containerMovements.textContent = '';
+  movement.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+      <div class="movements__row">
+        <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+        <div class="movements__value">${Math.abs(mov)}€</div>
+      </div>
+    `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
