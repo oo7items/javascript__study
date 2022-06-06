@@ -22,19 +22,26 @@
 
   <body>
     <script>
-      const capitalizeName = function (name) {
-        const names = name.split(" ");
-        const namesUpper = [];
+      const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+      const eurToUsd = 1.1;
 
-        for (const n of names) {
-          // namesUpper.push(n[0].toUpperCase() + n.slice(1));
-          namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
-        }
-        console.log(namesUpper.join(" "));
-      };
+      // const movementsUSD = movements.map(function (mov) {
+      //   return mov * eurToUsd;
+      // });
 
-      capitalizeName("jessica ann smith davis"); // Jessica Ann Smith Davis
-      capitalizeName("jonas schmedtmann"); // Jonas Schmedtmann
+      // Arrow Function
+      const movementsUSD = movements.map((mov) => mov * eurToUsd);
+
+      console.log(movements);
+      console.log(movementsUSD);
+
+      const movementsUSDfor = [];
+
+      for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+      console.log(movementsUSDfor);
+
+      movements.forEach((mov, i, arr) => mov.slice(1));
+      console.log(movements);
     </script>
   </body>
 </html>
