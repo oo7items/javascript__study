@@ -103,3 +103,11 @@ const displayMovements = function (movement) {
 };
 
 displayMovements(account1.movements);
+
+    const displayBalance = function (movement) {
+      const balance = movement.reduce((acc, cur) => {
+        return acc + cur;
+      }, 0)
+      labelBalance.textContent = `${balance}`;
+    }
+    displayBalance(account1.movements);
