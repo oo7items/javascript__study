@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
+  <style>
     .no2 {
-        position: relative;
+      position: relative;
     }
 
     .no2 span {
-        position: absolute;
-        margin: 30px;
+      position: absolute;
+      margin: 30px;
     }
-</style>
+  </style>
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <m eta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<h1>test</h1>
+  <h1>test</h1>
 
-<body>
+  <body>
     <script>
-        const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-        const eurToUsd = 1.1;
+      const array1 = [1, 2, 3, 4];
 
-        // const movementsUSD = movements.map(function (mov) {
-        //   return mov * eurToUsd;
-        // });
-
-        // Arrow Function
-
+      // 0 1 1+0
+      const sumWithInitial = array1.reduce(
+        (previousValue, currentValue, index) => {
+          console.log(`${index} : ${previousValue} : ${currentValue}`);
+          return previousValue + currentValue;
+        }
+      );
     </script>
-</body>
-
+  </body>
 </html>
