@@ -8,34 +8,56 @@
   </head>
   <body></body>
   <script>
-    const restaurant = {
-      name: "Classio Italiano", // 名称：经典意大利语
-      location: "Via Angelo Tavanti 23, Firenze, Italy", // 地点： 意大利佛罗伦萨安杰洛塔凡提大街23号
-      categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"], //种类
-      starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"], // 开始菜单
-      mainMenu: ["Pizza", "Pasta", "Risotto"], // 主菜单
-      openingHours: {
-        thu: {
-          open: 12,
-          close: 22,
-        },
-        fri: {
-          open: 11,
-          close: 22,
-        },
-        sat: {
-          open: 0,
-          close: 24,
-        },
-      },
-      order(starterIndex, mainIndex) {
-        // 点餐
-        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-      },
-      orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
-        // 订单交付
-        console.log(`Order received! ${this.starterMenu}`);
+    const game = {
+      team1: "Bayern Munich",
+      team2: "Borrussia Dortmund",
+      players: [
+        [
+          "Neuer",
+          "Pavard",
+          "Martinez",
+          "Alaba",
+          "Davies",
+          "Kimmich",
+          "Goretzka",
+          "Coman",
+          "Muller",
+          "Gnarby",
+          "Lewandowski",
+        ],
+        [
+          "Burki",
+          "Schulz",
+          "Hummels",
+          "Akanji",
+          "Hakimi",
+          "Weigl",
+          "Witsel",
+          "Hazard",
+          "Brandt",
+          "Sancho",
+          "Gotze",
+        ],
+      ],
+      score: "4:0",
+      scored: [1, "Gnarby", "Lewandowski", "Hummels"],
+      date: "Nov 9th, 2037",
+      odds: {
+        team1: 1.33,
+        x: 3.25,
+        team2: 6.5,
       },
     };
+
+    for (const [i, player] of game.scored.entries()) {
+      console.log(`Goal ${i}: ${player}`);
+    }
+
+    const odds = Object.values(game.odds);
+    let average = 0;
+    for (const odd of odds) average += odd;
+    average /= odds.length;
+    console.log(average);
+    console.log(Object.keys(game.odds));
   </script>
 </html>
