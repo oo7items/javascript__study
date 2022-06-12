@@ -1,63 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
-  <script>
-    const game = {
-      team1: "Bayern Munich",
-      team2: "Borrussia Dortmund",
-      players: [
-        [
-          "Neuer",
-          "Pavard",
-          "Martinez",
-          "Alaba",
-          "Davies",
-          "Kimmich",
-          "Goretzka",
-          "Coman",
-          "Muller",
-          "Gnarby",
-          "Lewandowski",
-        ],
-        [
-          "Burki",
-          "Schulz",
-          "Hummels",
-          "Akanji",
-          "Hakimi",
-          "Weigl",
-          "Witsel",
-          "Hazard",
-          "Brandt",
-          "Sancho",
-          "Gotze",
-        ],
-      ],
-      score: "4:0",
-      scored: [1, "Gnarby", "Lewandowski", "Hummels"],
-      date: "Nov 9th, 2037",
-      odds: {
-        team1: 1.33,
-        x: 3.25,
-        team2: 6.5,
-      },
-    };
 
-    for (const [i, player] of game.scored.entries()) {
-      console.log(`Goal ${i}: ${player}`);
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-    const odds = Object.values(game.odds);
-    let average = 0;
-    for (const odd of odds) average += odd;
-    average /= odds.length;
-    console.log(average);
-    console.log(Object.keys(game.odds));
-  </script>
+<body></body>
+<script>
+
+  /*
+    朱莉娅和凯特还在研究狗，这次他们在研究狗是吃得太多还是太少。
+    吃得太多意味着狗目前的食物份量大于推荐的份量，而吃得太少则相反。
+    吃得适量意味着狗的当前食物部分在推荐部分以上 10% 和以下 10% 的范围内（见提示）。
+
+    1. 遍历包含狗对象的数组，并为每只狗计算推荐的食物部分并将其作为新属性添加到对象中。不要创建新数组，只需遍历数组即可。 Forumla：推荐食物=体重**0.75*28。（结果是以克为单位的食物，重量需要以公斤为单位）
+
+    2. 找到莎拉的狗并登录控制台，看看它吃得太多还是太少。提示：有些狗有多个主人，所以你首先需要在主人数组中找到莎拉，所以这个有点棘手（故意）🤓
+    3. 创建一个包含所有吃得太多狗的主人的数组（'ownersEatTooMuch'）和一个包含所有吃得过少的狗主人的数组（'ownersEatTooLittle'）。
+
+    4. 将 3. 中创建的每个数组的字符串记录到控制台，如下所示：“Matilda、Alice 和 Bob 的狗吃得太多了！”和“莎拉、约翰和迈克尔的狗吃得太少了！”
+
+
+    5. 记录到控制台是否有任何狗在吃推荐的食物量（只是对或错）
+    6. 记录到控制台是否有任何狗吃了 OKAY 量的食物（只是对或错）
+
+    7. 创建一个数组，其中包含正在吃 OKAY 量食物的狗（尝试重复使用 6 中使用的条件。）
+    8. 创建 dogs 数组的浅表副本，并按推荐的食物部分按升序对其进行排序（请记住，这些部分在数组的对象内）
+
+    提示1：使用许多不同的工具来解决这些挑战，您可以使用摘要讲座在它们之间进行选择😉
+    提示 2：在推荐部分上下 10% 的范围内意味着：电流 >（推荐 * 0.90）&& 电流 <（推荐 * 1.10）。基本上，当前部分应该在推荐部分的 90% 到 110% 之间。
+
+    测试数据：
+    常量狗 = [
+      {体重：22，curFood：250，所有者：['Alice'，'Bob']}，
+      {体重：8，curFood：200，所有者：['Matilda']}，
+      {体重：13，curFood：275，所有者：['Sarah'，'John']}，
+      {体重：32，curFood：340，所有者：['Michael']}
+    ];
+
+    祝你好运😀
+  */
+  const dogs = [
+    { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+    { weight: 8, curFood: 200, owners: ['Matilda'] },
+    { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+    { weight: 32, curFood: 340, owners: ['Michael'] },
+  ];
+  // 1.
+  dogs.forEach(dog => (dog.recFood = Math.trunc(dog.weight ** 0.75 * 28)));
+
+  // 2.
+  const dogSarah = dogs.find(dog => dog.owners.includes('Sarah'));
+  console.log(dogSarah);
+  console.log(
+    `Sarah's dog is eating too ${dogSarah.curFood > dogSarah.recFood ? 'much' : 'little'
+    } `
+  );
+
+  // 3.
+  const ownersEatTooMuch = dogs
+    .filter(dog => dog.curFood > dog.recFood)
+    .flatMap(dog => dog.owners);
+  // .flat();
+  console.log(ownersEatTooMuch);
+
+  const ownersEatTooLittle = dogs
+    .filter(dog => dog.curFood < dog.recFood)
+    .flatMap(dog => dog.owners);
+  console.log(ownersEatTooLittle);
+
+  // 4.
+  // "Matilda and Alice and Bob's dogs eat too much!"
+  //  "Sarah and John and Michael's dogs eat too little!"
+  console.log(`${ownersEatTooMuch.join(' and ')}'s dogs eat too much!`);
+  console.log(`${ownersEatTooLittle.join(' and ')}'s dogs eat too little!`);
+
+  // 5.
+  console.log(dogs.some(dog => dog.curFood === dog.recFood));
+
+  // 6.
+  // current > (recommended * 0.90) && current < (recommended * 1.10)
+  const checkEatingOkay = dog =>
+    dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+  console.log(dogs.some(checkEatingOkay));
+
+  // 7.
+  console.log(dogs.filter(checkEatingOkay));
+
+  // 8.
+  // sort it by recommended food portion in an ascending order [1,2,3]
+  const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+  console.log(dogsSorted);
+
+
+
+</script>
+
 </html>

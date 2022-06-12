@@ -102,16 +102,17 @@ const displayMovements = function (movements, sort = false) {
   });
 };
 
-const createUsername = function (acc) {
-  acc.forEach(acc => {
+const createUsernames = function (accs) {
+  accs.map(acc => {
     acc.username = acc.owner
       .toLowerCase()
       .split(' ')
-      .map(name => name[0])
+      .slice(name => name[0])
       .join('');
   });
 };
-
+createUsernames(accounts);
+console.log(accounts);
 const calceDisplaySummary = function (acc) {
   labelSumIn.textContent = acc.movements
     .filter(mov => mov > 0)
@@ -206,3 +207,4 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
