@@ -1,65 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
-    .no2 {
-      position: relative;
-    }
-
-    .no2 span {
-      position: absolute;
-      margin: 30px;
-    }
-  </style>
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <m eta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-
-  <h1>test</h1>
-
   <body>
+    <button>test</button>
     <script>
-      // 创建和填充数组的更多方法
-      const arr = [1, 2, 3, 4, 5, 6, 7];
-      console.log(new Array(1, 2, 3, 4, 5, 6, 7)); // [1, 2, 3, 4, 5, 6, 7]
-
-      // Emprty arrays + fill method
-      const x = new Array(7);
-      console.log(x); // [空属性 × 7]
-      // console.log(x.map(() => 5));
-      x.fill(1, 3, 5);
-      // x.fill(1);
-      console.log(x); // [空属性 × 3, 1, 1, 空属性 × 2]
-
-      arr.fill(23, 2, 6);
-      console.log(arr); // [1, 2, 23, 23, 23, 23, 7]
-
-      // Array.from
-      const y = Array.from({ length: 7 }, () => 1);
-      console.log(y); // [1, 1, 1, 1, 1, 1, 1]
-
-      const z = Array.from({ length: 7 }, (_, i) => i + 1);
-      console.log(z); // [1, 2, 3, 4, 5, 6, 7]
-      const d = Array.from([new Array(7)], function (_, i) {
-        return i + 1;
-      });
-      console.log(d); // [1, 2, 3, 4, 5, 6, 7]
-      labelBalance.addEventListener("click", function () {
-        const movementsUI = Array.from(
-          document.querySelectorAll(".movements__value"),
-          (el) => Number(el.textContent.replace("€", ""))
-        );
-        console.log(movementsUI);
-
-        const movementsUI2 = [
-          ...document.querySelectorAll(".movements__value"),
-        ];
-      });
-
-      console.log(test);
+      console.log(document.documentElement); // 显示整个HTML文档
+      console.log(document.head);
+      console.log(document.body);
+      console.log(document.button);
     </script>
   </body>
 </html>
