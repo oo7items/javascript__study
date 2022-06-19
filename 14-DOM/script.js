@@ -613,101 +613,101 @@ slider();
               3. 黑点进行动画计时 ----待完成
 */
 
-const slider = function () {
-  const slides = document.querySelectorAll('.slide');
-  const btnLeft = document.querySelector('.slider__btn--left');
-  const btnRight = document.querySelector('.slider__btn--right');
-  const dotContainer = document.querySelector('.dots');
+// const slider = function () {
+//   const slides = document.querySelectorAll('.slide');
+//   const btnLeft = document.querySelector('.slider__btn--left');
+//   const btnRight = document.querySelector('.slider__btn--right');
+//   const dotContainer = document.querySelector('.dots');
 
-  let curSlide = 0;
-  const maxSlide = slides.length;
-  // 初始动画效果
-  // slides.forEach((s) => (s.style.opacity = 0));
-  const goToSlide = function (slide) {
-    slides.forEach(
-      // 重点
-      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-    );
-  };
+//   let curSlide = 0;
+//   const maxSlide = slides.length;
+//   // 初始动画效果
+//   // slides.forEach((s) => (s.style.opacity = 0));
+//   const goToSlide = function (slide) {
+//     slides.forEach(
+//       // 重点
+//       (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+//     );
+//   };
 
-  const createDots = function () {
-    slides.forEach(function (_, i) {
-      // 重点
-      dotContainer.insertAdjacentHTML(
-        'beforeend',
-        `<button class="dots__dot" data-slide="${i}"></button>`
-      );
-    });
-  };
+//   const createDots = function () {
+//     slides.forEach(function (_, i) {
+//       // 重点
+//       dotContainer.insertAdjacentHTML(
+//         'beforeend',
+//         `<button class="dots__dot" data-slide="${i}"></button>`
+//       );
+//     });
+//   };
 
-  const activateDot = function (slide) {
-    document
-      .querySelectorAll('.dots__dot')
-      .forEach(dot => dot.classList.remove('dots__dot--active'));
-    // 重点
-    document
-      .querySelector(`.dots__dot[data-slide="${slide}"]`)
-      .classList.add('dots__dot--active');
-  };
+//   const activateDot = function (slide) {
+//     document
+//       .querySelectorAll('.dots__dot')
+//       .forEach(dot => dot.classList.remove('dots__dot--active'));
+//     // 重点
+//     document
+//       .querySelector(`.dots__dot[data-slide="${slide}"]`)
+//       .classList.add('dots__dot--active');
+//   };
 
-  const prevSlide = function () {
-    // [0,1,2]
-    if (curSlide === 0) {
-      curSlide = maxSlide - 1;
-    } else {
-      curSlide--;
-    }
-    goToSlide(curSlide);
-    activateDot(curSlide);
-    clearInterval(time);
-  };
+//   const prevSlide = function () {
+//     // [0,1,2]
+//     if (curSlide === 0) {
+//       curSlide = maxSlide - 1;
+//     } else {
+//       curSlide--;
+//     }
+//     goToSlide(curSlide);
+//     activateDot(curSlide);
+//     clearInterval(time);
+//   };
 
-  const nextslide = function () {
-    if (curSlide === maxSlide - 1) {
-      curSlide = 0;
-    } else {
-      curSlide++;
-    }
-    goToSlide(curSlide);
-    activateDot(curSlide);
-  };
+//   const nextslide = function () {
+//     if (curSlide === maxSlide - 1) {
+//       curSlide = 0;
+//     } else {
+//       curSlide++;
+//     }
+//     goToSlide(curSlide);
+//     activateDot(curSlide);
+//   };
 
-  const nextSlide = function () {
-    nextslide();
-    clearInterval(time);
-  };
+//   const nextSlide = function () {
+//     nextslide();
+//     clearInterval(time);
+//   };
 
-  const time = setInterval(() => {
-    nextslide();
-  }, 3000);
+//   const time = setInterval(() => {
+//     nextslide();
+//   }, 3000);
 
-  const init = function () {
-    goToSlide(0);
-    createDots();
-    activateDot(0);
-  };
-  init();
+//   const init = function () {
+//     goToSlide(0);
+//     createDots();
+//     activateDot(0);
+//   };
+//   init();
 
-  btnLeft.addEventListener('click', prevSlide);
-  btnRight.addEventListener('click', nextSlide);
+//   btnLeft.addEventListener('click', prevSlide);
+//   btnRight.addEventListener('click', nextSlide);
 
-  dotContainer.addEventListener('click', function (e) {
-    // 重点
-    // 添加if判断防止出现报错
-    if (e.target.classList.contains('dots__dot')) {
-      const { slide } = e.target.dataset;
-      goToSlide(slide);
-      activateDot(slide);
-      clearInterval(time);
-    }
-  });
+//   dotContainer.addEventListener('click', function (e) {
+//     // 重点
+//     // 添加if判断防止出现报错
+//     if (e.target.classList.contains('dots__dot')) {
+//       const { slide } = e.target.dataset;
+//       goToSlide(slide);
+//       activateDot(slide);
+//       clearInterval(time);
+//     }
+//   });
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') prevSlide();
-    e.key === 'ArrowRight' && nextSlide();
-  });
-};
-slider();
+//   document.addEventListener('keydown', function (e) {
+//     if (e.key === 'ArrowLeft') prevSlide();
+//     e.key === 'ArrowRight' && nextSlide();
+//   });
+// };
+// slider();
 
 // 当我们说生命周期时， 我们的意思是从那一刻开始 该页面首先被访问，直到用户离开它。
 // 让我们在此文件的末尾执行此操作。 现在，我们需要谈论的第一个事件 被称为 DOM 内容加载。
@@ -732,7 +732,18 @@ window.addEventListener('load', function (e) {
 //   e.returnValue = '';
 // });
 
-window.addEventListener('beforeunload', function (e) {
-  e.preventDefault();
-  e.returnValue = 'dasdsad';
-});
+
+    document.addEventListener('DOMContentLoaded', function (e) {
+      console.log('HTML parsed and DOM tree built!', e);
+    });
+
+    window.addEventListener('load', function (e) {
+      console.log('Page fully loaded', e);
+    });
+
+    window.addEventListener('beforeunload', function (e) {
+      e.preventDefault();
+      console.log(e);
+      e.returnValue = '';
+    });
+
