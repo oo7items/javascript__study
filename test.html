@@ -1,312 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>
+      <div class="test"></div>
+    </h1>
+    <script>
+      const h1 = document.querySelector("h1");
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script defer src="./test.js"></script>
-</head>
+      // Going downwards: child 向下:子
+      console.log(h1.querySelectorAll(".highlight"));
+      console.log(h1.childNodes);
+      console.log(h1.children);
+      h1.firstElementChild.style.color = "white";
+      h1.lastElementChild.style.color = "orangered";
 
-<body>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="a">1123</div>
-  <div class="b">123123131231312</div>
-</body>
+      // Going upwards: parents 向上:父母
+      console.log(h1.parentNode);
+      console.log(h1.parentElement);
 
+      h1.closest(".header").style.background = "var(--gradient-secondary)";
+
+      h1.closest("h1").style.background = "var(--gradient-primary)";
+
+      // Going sideways: siblings 横向发展:兄弟姐妹
+      console.log(h1.previousElementSibling);
+      console.log(h1.nextElementSibling);
+
+      console.log(h1.previousSibling);
+      console.log(h1.nextSibling);
+
+      console.log(h1.parentElement.children);
+      [...h1.parentElement.children].forEach(function (el) {
+        if (el !== h1) el.style.transform = "scale(0.5)";
+      });
+    </script>
+  </body>
 </html>
