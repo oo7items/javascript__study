@@ -1,66 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <h1>test</h1>
-    <script>
-      /*
-         1.使用构造函数实现汽车。汽车有品牌和速度属性。speed属性是汽车的当前速度，单位为km/h；
-         2.实施“加速”方法，将汽车速度提高10，并将新速度记录到控制台；
-         3.实施“制动”方法，将汽车速度降低5，并将新速度记录到控制台；
-         4.创建两个汽车对象，分别多次调用“加速”和“刹车”进行实验。
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-         数据车1:时速120公里的“宝马”
-         数据车2:时速95公里的“奔驰”
+<body>
+  <h1>test</h1>
+  <script>
+    /*
+        1.使用构造函数实现汽车。汽车有品牌和速度属性。speed属性是汽车的当前速度，单位为km/h；
+        2.实施“加速”方法，将汽车速度提高10，并将新速度记录到控制台；
+        3.实施“制动”方法，将汽车速度降低5，并将新速度记录到控制台；
+        4.创建两个汽车对象，分别多次调用“加速”和“刹车”进行实验。
 
-         祝您好运😀
-       */
-      const Car = function (make, speed) {
-        this.make = make;
-        this.speed = speed;
-      };
+        数据车1:时速120公里的“宝马”
+        数据车2:时速95公里的“奔驰”
 
-      Car.prototype.accelerate = function () {
-        this.speed += 10;
-        console.log(`${this.make} is going at ${this.speed} km/h`);
-      };
+        祝您好运😀
+      */
 
-      Car.prototype.brake = function () {
-        this.speed -= 5;
-        console.log(`${this.make} is going at ${this.speed} km/h`);
-      };
+    const Car = function (make, speed) {
+      this.make = make;
+      this.speed = speed;
+    };
 
-      const bmw = new Car("BMW", 120);
-      const mercedes = new Car("Mercedes", 95);
+    Car.prototype.accelerate = function () {
+      this.speed += 10;
+      console.log(`${this.make} is going at ${this.speed} km/h`);
+    };
 
-      bmw.accelerate();
-      bmw.accelerate();
-      bmw.brake();
-      bmw.accelerate();
-      const Car = function (brand, speed) {
-        this.speed = speed;
-        this.brand = brand;
-      };
+    Car.prototype.brake = function () {
+      this.speed -= 5;
+      console.log(`${this.make} is going at ${this.speed} km/h`);
+    };
 
-      Car.prototype.speedUp = function () {
-        console.log(`speed : ${(this.speed += 10)}`);
-      };
-      Car.prototype.brake = function () {
-        console.log(`speed : ${(this.speed -= 10)}`);
-      };
-      const BMW = new Car("BMW", 120);
-      const Benz = new Car("Benz", 95);
-      BMW.speedUp();
-      BMW.speedUp();
-      BMW.speedUp();
-      BMW.speedUp();
-      BMW.brake();
-    </script>
-  </body>
+    const bmw = new Car('BMW', 120);
+    const mercedes = new Car('Mercedes', 95);
+
+    bmw.accelerate();
+    bmw.accelerate();
+    bmw.brake();
+    bmw.accelerate();
+  </script>
+</body>
+
 </html>
