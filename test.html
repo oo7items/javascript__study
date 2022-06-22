@@ -7,38 +7,80 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>
-      <div class="test"></div>
-    </h1>
     <script>
-      const h1 = document.querySelector("h1");
+      const Person = function (firstName, birthYear) {
+        // Instance properties
+        this.firstName = firstName;
+        this.birthYear = birthYear;
 
-      // Going downwards: child 向下:子
-      console.log(h1.querySelectorAll(".highlight"));
-      console.log(h1.childNodes);
-      console.log(h1.children);
-      h1.firstElementChild.style.color = "white";
-      h1.lastElementChild.style.color = "orangered";
+        // Never to this!
+        // this.calcAge = function () {
+        //   console.log(2037 - this.birthYear);
+        // };
+      };
 
-      // Going upwards: parents 向上:父母
-      console.log(h1.parentNode);
-      console.log(h1.parentElement);
+      const jonas = new Person("Jonas", 1991);
+      console.log(Person.prototype.__proto__);
+      console.log(jonas.__proto__);
+      // console.log(jonas);
 
-      h1.closest(".header").style.background = "var(--gradient-secondary)";
+      // 1. New {} is created
+      // 2. function is called, this = {}
+      // 3. {} linked to prototype
+      // 4. function automatically return {}
 
-      h1.closest("h1").style.background = "var(--gradient-primary)";
+      const matilda = new Person("Matilda", 2017);
+      const jack = new Person("Jack", 1975);
 
-      // Going sideways: siblings 横向发展:兄弟姐妹
-      console.log(h1.previousElementSibling);
-      console.log(h1.nextElementSibling);
+      // console.log(jonas instanceof Person);
 
-      console.log(h1.previousSibling);
-      console.log(h1.nextSibling);
+      // console.log(Person.prototype);
 
-      console.log(h1.parentElement.children);
-      [...h1.parentElement.children].forEach(function (el) {
-        if (el !== h1) el.style.transform = "scale(0.5)";
-      });
+      Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+      };
+
+      // jonas.calcAge();
+      // matilda.calcAge();
+
+      // console.log(jonas.__proto__);
+      // console.log(jonas.__proto__ === Person.prototype);
+
+      // console.log(Person.prototype.isPrototypeOf(jonas));
+      // console.log(Person.prototype.isPrototypeOf(matilda));
+      // console.log(Person.prototype.isPrototypeOf(Person));
+
+      // // .prototyeOfLinkedObjects
+
+      // Person.prototype.species = "Homo Sapiens";
+      // console.log(jonas.species, matilda.species);
+
+      // console.log(jonas.hasOwnProperty("firstName"));
+      // console.log(jonas.hasOwnProperty("species"));
+
+      // ///////////////////////////////////////
+      // // Prototypal Inheritance on Built-In Objects
+      // console.log(jonas.__proto__);
+      // // Object.prototype (top of prototype chain)
+      // console.log(jonas.__proto__.__proto__);
+      // console.log(jonas.__proto__.__proto__.__proto__);
+
+      // console.dir(Person.prototype.constructor);
+
+      // const arr = [3, 6, 6, 5, 6, 9, 9]; // new Array === []
+      // console.log(arr.__proto__);
+      // console.log(arr.__proto__ === Array.prototype);
+
+      // console.log(arr.__proto__.__proto__);
+
+      // Array.prototype.unique = function () {
+      //   return [...new Set(this)];
+      // };
+
+      // console.log(arr.unique());
+
+      // const h1 = document.querySelector("h1");
+      // console.dir((x) => x + 1);
     </script>
   </body>
 </html>
