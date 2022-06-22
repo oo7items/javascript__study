@@ -6,81 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
+    <h1>test</h1>
     <script>
-      const Person = function (firstName, birthYear) {
-        // Instance properties
-        this.firstName = firstName;
-        this.birthYear = birthYear;
+      /*
+         1.使用构造函数实现汽车。汽车有品牌和速度属性。speed属性是汽车的当前速度，单位为km/h；
+         2.实施“加速”方法，将汽车速度提高10，并将新速度记录到控制台；
+         3.实施“制动”方法，将汽车速度降低5，并将新速度记录到控制台；
+         4.创建两个汽车对象，分别多次调用“加速”和“刹车”进行实验。
 
-        // Never to this!
-        // this.calcAge = function () {
-        //   console.log(2037 - this.birthYear);
-        // };
+         数据车1:时速120公里的“宝马”
+         数据车2:时速95公里的“奔驰”
+
+         祝您好运😀
+       */
+      const Car = function (make, speed) {
+        this.make = make;
+        this.speed = speed;
       };
 
-      const jonas = new Person("Jonas", 1991);
-      console.log(Person.prototype.__proto__);
-      console.log(jonas.__proto__);
-      // console.log(jonas);
-
-      // 1. New {} is created
-      // 2. function is called, this = {}
-      // 3. {} linked to prototype
-      // 4. function automatically return {}
-
-      const matilda = new Person("Matilda", 2017);
-      const jack = new Person("Jack", 1975);
-
-      // console.log(jonas instanceof Person);
-
-      // console.log(Person.prototype);
-
-      Person.prototype.calcAge = function () {
-        console.log(2037 - this.birthYear);
+      Car.prototype.accelerate = function () {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
       };
 
-      // jonas.calcAge();
-      // matilda.calcAge();
+      Car.prototype.brake = function () {
+        this.speed -= 5;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+      };
 
-      // console.log(jonas.__proto__);
-      // console.log(jonas.__proto__ === Person.prototype);
+      const bmw = new Car("BMW", 120);
+      const mercedes = new Car("Mercedes", 95);
 
-      // console.log(Person.prototype.isPrototypeOf(jonas));
-      // console.log(Person.prototype.isPrototypeOf(matilda));
-      // console.log(Person.prototype.isPrototypeOf(Person));
+      bmw.accelerate();
+      bmw.accelerate();
+      bmw.brake();
+      bmw.accelerate();
+      const Car = function (brand, speed) {
+        this.speed = speed;
+        this.brand = brand;
+      };
 
-      // // .prototyeOfLinkedObjects
-
-      // Person.prototype.species = "Homo Sapiens";
-      // console.log(jonas.species, matilda.species);
-
-      // console.log(jonas.hasOwnProperty("firstName"));
-      // console.log(jonas.hasOwnProperty("species"));
-
-      // ///////////////////////////////////////
-      // // Prototypal Inheritance on Built-In Objects
-      // console.log(jonas.__proto__);
-      // // Object.prototype (top of prototype chain)
-      // console.log(jonas.__proto__.__proto__);
-      // console.log(jonas.__proto__.__proto__.__proto__);
-
-      // console.dir(Person.prototype.constructor);
-
-      // const arr = [3, 6, 6, 5, 6, 9, 9]; // new Array === []
-      // console.log(arr.__proto__);
-      // console.log(arr.__proto__ === Array.prototype);
-
-      // console.log(arr.__proto__.__proto__);
-
-      // Array.prototype.unique = function () {
-      //   return [...new Set(this)];
-      // };
-
-      // console.log(arr.unique());
-
-      // const h1 = document.querySelector("h1");
-      // console.dir((x) => x + 1);
+      Car.prototype.speedUp = function () {
+        console.log(`speed : ${(this.speed += 10)}`);
+      };
+      Car.prototype.brake = function () {
+        console.log(`speed : ${(this.speed -= 10)}`);
+      };
+      const BMW = new Car("BMW", 120);
+      const Benz = new Car("Benz", 95);
+      BMW.speedUp();
+      BMW.speedUp();
+      BMW.speedUp();
+      BMW.speedUp();
+      BMW.brake();
     </script>
   </body>
 </html>
