@@ -1,50 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      const account = {
-        owner: "Jonas",
-        movements: [200, 530, 120, 300],
 
-        get latest() {
-          return this.movements.slice(-1).pop();
-        },
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 
-        set owner(name) {
-          this.owner = `${name} sadad a`;
-        },
-      };
-
-      account.owner = "123132";
-      console.log(account.owner);
-      console.log(account);
-      console.log(account.latest);
-
-      class account2 {
-        constructor(name, movements) {
-          this.name = name;
-          this.movements = movements;
-        }
-
-        get latest() {
-          return this.movements.slice(-1).pop();
-        }
-
-        set name(ts) {
-          this._name = ts;
-        }
+<body>
+  <script>
+    class PersonCl {
+      constructor(fullName, birthYear) {
+        this.fullName = fullName;
+        this.birthYear = birthYear;
       }
 
-      const zgz = new account2("zgz", [200, 530, 120, 300]);
+      set fullName(name) {
+        return '123'
+      }
 
-      zgz.name = "asdknjaksld";
-      console.log(zgz);
-    </script>
-  </body>
+
+    }
+  </script>
+</body>
+
 </html>
