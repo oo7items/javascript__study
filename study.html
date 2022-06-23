@@ -8,13 +8,43 @@
   </head>
   <body>
     <script>
-      const Person = function (name, age) {
-        this.name = name;
-        this.age = age;
+      const account = {
+        owner: "Jonas",
+        movements: [200, 530, 120, 300],
+
+        get latest() {
+          return this.movements.slice(-1).pop();
+        },
+
+        set owner(name) {
+          this.owner = `${name} sadad a`;
+        },
       };
-      const zgz = new Person("zgz", "23");
+
+      account.owner = "123132";
+      console.log(account.owner);
+      console.log(account);
+      console.log(account.latest);
+
+      class account2 {
+        constructor(name, movements) {
+          this.name = name;
+          this.movements = movements;
+        }
+
+        get latest() {
+          return this.movements.slice(-1).pop();
+        }
+
+        set name(ts) {
+          this._name = ts;
+        }
+      }
+
+      const zgz = new account2("zgz", [200, 530, 120, 300]);
+
+      zgz.name = "asdknjaksld";
       console.log(zgz);
-      console.log(Person.__proto__);
     </script>
   </body>
 </html>
