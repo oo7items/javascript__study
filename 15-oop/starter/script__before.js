@@ -393,59 +393,58 @@ console.log(Person.prototype.hasOwnProperty('species')); // true
 // bmw.accelerate();
 
 /** “类”之间的继承：构造函数 */
-// const Person = function (firstName, birthYear) {
-//   this.firstName = firstName;
-//   this.birthYear = birthYear;
-// };
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
 
-// Person.prototype.calcAge = function () {
-//   console.log(2037 - this.birthYear);
-// };
+Person.prototype.calcAge = function () {
+  console.log(2037 - this.birthYear);
+};
 
-// const Student = function (firstName, birthYear, course) {
-//   // 这里看起来很糟糕, 我们一直在重复代码！
-//   // this.firstName = firstName;
-//   // this.birthYear = birthYear;
-//   // 报错, 我们不能简单地调用Person函数, 我们还需要手动设置this关键字
-//   // Person(firstName, birthYear); // 无法设置未定义的属性“firstName”
-//   // 使用call指定this关键字
-//   Person.call(this, firstName, birthYear);
-//   this.course = course;
-// };
-// // 许多人会认为这样做更合乎逻辑, 但事实上, 这根本行不通. 让我告诉你为什么会这样. 所以如果我们做学生点原型等于人点原型, 那么我们最终不会得到我们需要的原型链.
-// // 相反, 我们最终会这样, 这是一个完全错误的原型链. 那是因为我们实际上是在说学生的原型属性和一个人的原型属性应该是完全相同的对象. 但事实上, 这并不是我们想要的. 我们想要的是这个人的原型对象成为学生点原型的原型. 所以我们想继承它, 但它不应该是完全相同的对象. 这就是为什么我们实际上需要对象点创建
-// // 1. Student.prototype.__proto__ = Person.prototype
-// Student.prototype = Object.create(Person.prototype);
-// // Student.prototype = Person.prototype;
+const Student = function (firstName, birthYear, course) {
+  // 这里看起来很糟糕, 我们一直在重复代码！
+  // this.firstName = firstName;
+  // this.birthYear = birthYear;
+  // 报错, 我们不能简单地调用Person函数, 我们还需要手动设置this关键字
+  // Person(firstName, birthYear); // 无法设置未定义的属性“firstName”
+  // 使用call指定this关键字
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
 
-// Student.prototype.introduce = function () {
-//   console.log(`My name is ${this.firstName} and I study ${this.course}`);
-// };
+// 1. Student.prototype.__proto__ = Person.prototype
+Student.prototype = Object.create(Person.prototype);
+// Student.prototype = Person.prototype;
 
-// const mike = new Student('Mike', 2020, 'Computer Science');
-// mike.introduce();
-// mike.calcAge();
-// console.log(mike);
-// console.log(Student.prototype);
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
 
-// console.log(mike.__proto__);
-// console.log(mike.__proto__.__proto__);
+const mike = new Student('Mike', 2020, 'Computer Science');
+mike.introduce();
+mike.calcAge();
+console.log(mike);
+console.log(Student.prototype);
 
-// console.log(mike instanceof Student); // true
-// console.log(mike instanceof Person); // true
-// console.log(mike instanceof Object); // true
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
 
-// // 2. 实际上我们应该使用控制台点目录, 所以你现在看到JavaScript, 认为学生或原型的构造函数是这里的人. 原因是我们设置学生的原型属性使用对象点创建. 所以这使它如此学生点原型的构造函数 还是人.
-// console.dir(Student.prototype.constructor);
+console.log(mike instanceof Student); // true
+console.log(mike instanceof Person); // true
+console.log(mike instanceof Object); // true
 
-// // 3. 将学生原型的构造函数改为学生
-// // Student.prototype.constructor = Student;
+// 2. 实际上我们应该使用控制台点目录, 所以你现在看到JavaScript, 认为学生或原型的构造函数是这里的人. 原因是我们设置学生的原型属性使用对象点创建. 所以这使它如此学生点原型的构造函数 还是人.
+console.dir(Student.prototype.constructor);
 
-// console.log(Student.prototype);
-// console.log(mike.__proto__); // Person
-// console.log(mike.__proto__.__proto__); // Person
-// console.log(mike.__proto__ === Student.prototype); // true
-// console.log(Student.prototype.__proto__ === Person.prototype); // true
+// 3. 将学生原型的构造函数改为学生
+// Student.prototype.constructor = Student;
+
+console.log(Student.prototype);
+console.log(mike.__proto__); // Person
+console.log(mike.__proto__.__proto__); // Person
+console.log(mike.__proto__ === Student.prototype); // true
+console.log(Student.prototype.__proto__ === Person.prototype); // true
 
 /* 编码挑战3
 1. 使用构造函数将电动汽车（称为 EV）实现为 Car 的 CHILD“类”. 除了品牌和当前速度外, EV 还具有以 % 为单位的当前电池电量（'charge' 属性）;
@@ -484,8 +483,7 @@ EV.prototype.constructor = EV;
 EV.prototype.chargeBattery = function (chargeTo) {
   this.charge = chargeTo;
 };
-const test = new EV();
-test.constructor('zgz', 120, 23);
+
 console.log(EV.prototype);
 // 原型链中具有相同属性名称的方法时, 子类会覆盖父类的方法, 作用域也是如此
 EV.prototype.accelerate = function () {

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const account = {
+        owner: "Jonas",
+        movements: [200, 530, 120, 300],
+
+        get latest() {
+          return this.movements.slice(-1).pop();
+        },
+
+        set latest(mov) {
+          this.movements.push(mov);
+        },
+      };
+      account.latest;
+      console.log(account.latest); // 300
+      console.log(account.movements); // 0: 200 1: 530 2: 120 3: 300 4: 50
+      // 数据验证
+      class PersonCl {
+        constructor(fullName, birthYear) {
+          this.fullName = fullName;
+          this.birthYear = birthYear;
+        }
+        // Set a property that already exists 设置一个已经存在的属性
+        set fullName(name) {
+          if (name.includes(" ")) console.log("q");
+          else alert(`${name} is not a full name!`);
+        }
+
+        // get fullName() {
+        //   return this._fullName;
+        // }
+      }
+
+      // PersonCl
+      const jessica = new PersonCl("Jessica Davis", 1996);
+      console.log(jessica);
+    </script>
+  </body>
+</html>

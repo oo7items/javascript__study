@@ -1,51 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-</head>
-
-<body>
-  <script>
-    class PersonCl {
-      constructor(fullName, birthYear) {
-        this.fullName = fullName;
+  <body>
+    <script>
+      const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
         this.birthYear = birthYear;
-      }
-      // Set a property that already exists 设置一个已经存在的属性
-      set fullName(name) {
-        if (name.includes(' ')) this._fullName = name;
-        else alert(`${name} is not a full name!`);
-      }
+      };
 
-      get fullName() {
-        return this._fullName;
-      }
-    }
+      Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+      };
 
-    const jessica = new PersonCl('Jessica', 1996);
-    console.log(jessica)
+      const Student = function (firstName, birthYear, course) {
+        // this.firstName = firstName;
+        // this.birthYear = birthYear;
+        /////// 优化公共部分
+        Person.call(this, firstName, birthYear);
+        this.course = course;
+      };
 
+      Student.prototype.introduc = function () {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`);
+      };
 
-    const account = {
-      owner: 'Jonas',
-      movements: [200, 530, 120, 300],
+      const mike = new Student("Mike", 2020, "Computer Science");
+      mike.introduce();
 
-      get latest() {
-        return this.movements.slice(-1).pop();
-      },
+      /////////////////////////////////////////////////////////////
+      const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+      };
 
-      set latest(mov) {
-        this.movements.push(mov);
-      },
-    };
-    // account.latest;
-    console.log(account.latest); // 300
-    console.log(account.movements); // 0: 200 1: 530 2: 120 3: 300 4: 50
-  </script>
-</body>
+      Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+      };
 
+      const Student = function (firstName, birthYear, course) {
+        Person.call(this, firstName, birthYear);
+        this.course = course;
+      };
+
+      Student.prototype.introduce = function () {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`);
+      };
+
+      //// 链接原型
+      // 必须在创建方法的前面，因为Object.create会返回一个空对象
+      Student.prototype = Object.create(Person.prototype);
+      // Student.prototype = Person.prototype;
+      const mike = new Student("Mike", 2020, "Computer Science");
+      mike.introduce();
+      mike.calcAge();
+      //////////////////////////////////////////////////////////////////////////////////
+
+      const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+      };
+
+      Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+      };
+
+      const Student = function (firstName, birthYear, course) {
+        Person.call(this, firstName, birthYear);
+        this.course = course;
+      };
+
+      // 必须在创建方法的前面，因为Object.create会返回一个空对象
+      // Student.prototype是一个空对象，然后原型是Person.prototype
+      Student.prototype = Object.create(Person.prototype);
+
+      Student.prototype.introduce = function () {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`);
+      };
+
+      Student.prototype.displayCourse = function () {
+        console.log(`${this.course}`);
+      };
+
+      // console.log(Student.prototype);
+      const mike = new Student("Mike", 2020, "Computer Science");
+      mike.displayCourse();
+      mike.introduce();
+      mike.calcAge();
+      console.log(mike);
+      console.log(mike.__proto__); //
+      console.log(mike.__proto__.__proto__);
+
+      console.log(mike instanceof Student); // true
+      console.log(mike instanceof Person); // true
+
+      // 继承自Person对象的构造函数，因为Object.create的原因，Student.prototype为一个空对象，因此需要重新将constructor属性设置为Student
+      // 虽然不影响new Student实例的使用，因为Student我们并没有改变，但是new Student对象原型链中会没有constructor这个属性，会导致继承Person对象原型的constructor
+      console.log(Student.prototype.constructor);
+      Student.prototype.constructor = Student;
+
+      console.dir(Student.prototype.constructor);
+    </script>
+  </body>
 </html>
