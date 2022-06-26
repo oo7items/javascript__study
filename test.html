@@ -1,110 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <script>
-      const Person = function (firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
-      };
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
 
-      Person.prototype.calcAge = function () {
-        console.log(2037 - this.birthYear);
-      };
+<body>
+  <script>
+    class CarCl {
+      constructor(make, speed) {
+        this.make = make;
+        this.speed = speed;
+      }
 
-      const Student = function (firstName, birthYear, course) {
-        // this.firstName = firstName;
-        // this.birthYear = birthYear;
-        /////// 优化公共部分
-        Person.call(this, firstName, birthYear);
-        this.course = course;
-      };
+      accelerate() {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+      }
 
-      Student.prototype.introduc = function () {
-        console.log(`My name is ${this.firstName} and I study ${this.course}`);
-      };
+      brake() {
+        this.speed -= 5;
+        console.log(`${this.make} is going at ${this.speed} km/h`);
+        return this;
+      }
 
-      const mike = new Student("Mike", 2020, "Computer Science");
-      mike.introduce();
+      get speedUS() {
+        return this.speed / 1.6;
+      }
 
-      /////////////////////////////////////////////////////////////
-      const Person = function (firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
-      };
+      set speedUS(speed) {
+        this.speed = speed * 1.6;
+      }
+    }
 
-      Person.prototype.calcAge = function () {
-        console.log(2037 - this.birthYear);
-      };
+    class EVCl extends CarCl {
+      #charge;
 
-      const Student = function (firstName, birthYear, course) {
-        Person.call(this, firstName, birthYear);
-        this.course = course;
-      };
+      constructor(make, speed, charge) {
+        super(make, speed);
+        this.#charge = charge;
+      }
 
-      Student.prototype.introduce = function () {
-        console.log(`My name is ${this.firstName} and I study ${this.course}`);
-      };
+      chargeBattery(chargeTo) {
+        this.#charge = chargeTo;
+        return this;
+      }
 
-      //// 链接原型
-      // 必须在创建方法的前面，因为Object.create会返回一个空对象
-      Student.prototype = Object.create(Person.prototype);
-      // Student.prototype = Person.prototype;
-      const mike = new Student("Mike", 2020, "Computer Science");
-      mike.introduce();
-      mike.calcAge();
-      //////////////////////////////////////////////////////////////////////////////////
+      accelerate() {
+        this.speed += 20;
+        this.#charge--;
+        console.log(
+          `${this.make} is going at ${this.speed} km/h, with a charge of ${this.#charge
+          }`
+        );
+        return this;
+      }
+    }
 
-      const Person = function (firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
-      };
+    const rivian = new EVCl('Rivian', 120, 23);
+    console.log(rivian);
+    // console.log(rivian.#charge);
+    rivian
+      .accelerate()
+      .accelerate()
+      .accelerate()
+      .brake()
+      .chargeBattery(50)
+      .accelerate();
 
-      Person.prototype.calcAge = function () {
-        console.log(2037 - this.birthYear);
-      };
+    console.log(rivian.speedUS);
+  </script>
+</body>
 
-      const Student = function (firstName, birthYear, course) {
-        Person.call(this, firstName, birthYear);
-        this.course = course;
-      };
-
-      // 必须在创建方法的前面，因为Object.create会返回一个空对象
-      // Student.prototype是一个空对象，然后原型是Person.prototype
-      Student.prototype = Object.create(Person.prototype);
-
-      Student.prototype.introduce = function () {
-        console.log(`My name is ${this.firstName} and I study ${this.course}`);
-      };
-
-      Student.prototype.displayCourse = function () {
-        console.log(`${this.course}`);
-      };
-
-      // console.log(Student.prototype);
-      const mike = new Student("Mike", 2020, "Computer Science");
-      mike.displayCourse();
-      mike.introduce();
-      mike.calcAge();
-      console.log(mike);
-      console.log(mike.__proto__); //
-      console.log(mike.__proto__.__proto__);
-
-      console.log(mike instanceof Student); // true
-      console.log(mike instanceof Person); // true
-
-      // 继承自Person对象的构造函数，因为Object.create的原因，Student.prototype为一个空对象，因此需要重新将constructor属性设置为Student
-      // 虽然不影响new Student实例的使用，因为Student我们并没有改变，但是new Student对象原型链中会没有constructor这个属性，会导致继承Person对象原型的constructor
-      console.log(Student.prototype.constructor);
-      Student.prototype.constructor = Student;
-
-      console.dir(Student.prototype.constructor);
-    </script>
-  </body>
 </html>

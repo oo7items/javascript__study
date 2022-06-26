@@ -467,10 +467,7 @@ StudentProto.init = function (firstName, birthYear, course) {
   this.course = course;
 };
 
-StudentProto.introduce = function () {
-  // BUG in video:
-  // console.log(`My name is ${this.fullName} and I study ${this.course}`);
-  
+StudentProto.int
   // FIX:
   console.log(`My name is ${this.firstName} and I study ${this.course}`);
 };
@@ -478,7 +475,10 @@ StudentProto.introduce = function () {
 const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
-jay.calcAge();
+jay.calcAge(roduce = function () {
+  // BUG in video:
+  // console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  );
 
 
 ///////////////////////////////////////
