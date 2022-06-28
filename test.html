@@ -1,78 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const Person = function (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+      };
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+      Person.prototype.calcAge = function () {
+        console.log(2037 - this.birthYear);
+      };
 
-<body>
-  <script>
-    class CarCl {
-      constructor(make, speed) {
-        this.make = make;
-        this.speed = speed;
-      }
+      const Student = function (firstName, birthYear, course) {
+        Person.call(this, firstName, birthYear);
+        this.course = course;
+      };
 
-      accelerate() {
-        this.speed += 10;
-        console.log(`${this.make} is going at ${this.speed} km/h`);
-      }
+      // Linking prototypes 链接原型
+      Student.prototype = Object.create(Person.prototype);
 
-      brake() {
-        this.speed -= 5;
-        console.log(`${this.make} is going at ${this.speed} km/h`);
-        return this;
-      }
+      Student.prototype.introduce = function () {
+        console.log(`My name is ${this.firstName} and I study ${this.course}`);
+      };
 
-      get speedUS() {
-        return this.speed / 1.6;
-      }
+      const mike = new Student("Mike", 2020, "Computer Science");
+      mike.introduce();
+      mike.calcAge();
 
-      set speedUS(speed) {
-        this.speed = speed * 1.6;
-      }
-    }
+      console.log(mike.__proto__);
+      console.log(mike.__proto__.__proto__);
 
-    class EVCl extends CarCl {
-      #charge;
+      console.log(mike instanceof Student);
+      console.log(mike instanceof Person);
+      console.log(mike instanceof Object);
 
-      constructor(make, speed, charge) {
-        super(make, speed);
-        this.#charge = charge;
-      }
-
-      chargeBattery(chargeTo) {
-        this.#charge = chargeTo;
-        return this;
-      }
-
-      accelerate() {
-        this.speed += 20;
-        this.#charge--;
-        console.log(
-          `${this.make} is going at ${this.speed} km/h, with a charge of ${this.#charge
-          }`
-        );
-        return this;
-      }
-    }
-
-    const rivian = new EVCl('Rivian', 120, 23);
-    console.log(rivian);
-    // console.log(rivian.#charge);
-    rivian
-      .accelerate()
-      .accelerate()
-      .accelerate()
-      .brake()
-      .chargeBattery(50)
-      .accelerate();
-
-    console.log(rivian.speedUS);
-  </script>
-</body>
-
+      console.log(Student.prototype.constructor === Student); // false
+      Student.prototype.constructor = Student;
+      console.dir(Student.prototype.constructor);
+    </script>
+  </body>
 </html>
