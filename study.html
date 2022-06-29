@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const openingHours = {
+        thu: {
+          open: 12,
+          close: 22,
+        },
+        fri: {
+          open: 11,
+          close: 22,
+        },
+        sat: {
+          open: 0,
+          close: 24,
+        },
+      };
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+      const restaurant = {
+        name: "Classico Italiano",
+        location: "Via Angelo Tavanti 23, Firenze, Italy",
+        categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+        starterMenu: [
+          "Focaccia",
+          "Bruschetta",
+          "Garlic Bread",
+          "Caprese Salad",
+        ],
+        mainMenu: ["Pizza", "Pasta", "Risotto"],
+        openingHours,
+        order: function (starterIndex, mainIndex) {
+          return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+        },
+        orderDelivery: function ({ starterIndex, mainIndex, time, address }) {
+          console.log(
+            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+          );
+        },
+        orderPasta: function (ing1, ing2, ing3) {
+          console.log(
+            `Here is your declicious pasta with ${ing1}, ${ing2} and ${ing3}`
+          );
+        },
+        orderPizza: function (mainIngredient, ...otherIngredients) {
+          console.log(mainIngredient);
+          console.log(otherIngredients);
+        },
+      };
 
-<body>
-  <script>
-    class PersonCl {
-      constructor(fullName, birthYear) {
-        this.fullName = fullName;
-        this.birthYear = birthYear;
+      const properties = Object.keys(openingHours);
+      console.log(properties); // (3) ['thu', 'fri', 'sat'] 0: "thu" 1: "fri" 2: "sat" length: 3 [[Prototype]]: Array(0)
+
+      // 输出此餐厅哪个星期开门，分别是哪几天
+      let openStr = `We are open on ${properties.length} days: `;
+      for (const day of properties) {
+        openStr += `${day}, `;
       }
+      console.log(openStr);
 
-      // Instance methods
-      calcAge() {
-        console.log(2037 - this.birthYear);
+      // Property VALUES
+      const values = Object.values(openingHours);
+      console.log(values); // (3) [{…}, {…}, {…}] 0: {open: 12, close: 22} 1: {open: 11, close: 22} 2: {open: 0, close: 24} length: 3 [[Prototype]]: Array(0)
+
+      // Entire object
+      const entries = Object.entries(openingHours);
+      console.log(entries); // (3) [Array(2), Array(2), Array(2)] 0: (2) ['thu', {…}] 1: (2) ['fri', {…}] 2: (2) ['sat', {…}] length: 3 [[Prototype]]: Array(0)
+
+      // [key. value] 对象是不能迭代的
+      for (const [key, { open, close }] of entries) {
+        console.log(`On ${key} we open at ${open} and close at ${close}`);
+        /*
+        On thu we open at 12 and close at 22
+        On fri we open at 11 and close at 22
+        On sat we open at 0 and close at 24
+      */
       }
-
-      greet() {
-        console.log(`Hey ${this.fullName}`);
-      }
-
-      get age() {
-        return 2037 - this.birthYear;
-      }
-
-      set fullName(name) {
-        if (name.includes(' ')) this._fullName = name;
-        else alert(`${name} is not a full name!`);
-      }
-
-      get fullName() {
-        return this._fullName;
-      }
-
-      // Static method
-      static hey() {
-        console.log('Hey there 👋');
-      }
-    }
-
-    class StudentCl extends PersonCl {
-      constructor(fullName, birthYear, course) {
-        // Always needs to happen first!
-        super(fullName, birthYear);
-        this.course = course;
-      }
-
-      introduce() {
-        console.log(`My name is ${this.fullName} and I study ${this.course}`);
-      }
-
-      calcAge() {
-        console.log(
-          `I'm ${2037 - this.birthYear
-          } years old, but as a student I feel more like ${2037 - this.birthYear + 10
-          }`
-        );
-      }
-    }
-
-    const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
-    // OOP的动态性
-    martha.introduce(); // My name is Martha Jones and I study Computer Science
-    martha.calcAge(); // I'm 25 years old, but as a student I feel more like 35
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
