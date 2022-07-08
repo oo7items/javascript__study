@@ -7,20 +7,26 @@
     <title>Document</title>
   </head>
   <body>
-    <div>0</div>
     <script>
-      "use strict";
-      const a = {
-        number: 1,
-        plus: function () {
-          console.log("this.number");
-          console.log(this);
-        },
-      };
-      const b = {
-        number: 2,
-      };
-      document.querySelector("div").addEventListener("click", a.plus.bind(a));
+      class Workout {
+        date = new Date();
+        id = (new Date().now + "").slice(-10);
+        // this.date = ...
+        // this.id = ...
+        constructor(corrds, distance, duration) {
+          this.corrds = corrds;
+          this.distance = distance; // in km
+          this.duration = duration; // in min
+        }
+      }
+
+      class Running extends Workout {
+        constructor() {
+          super();
+        }
+      }
+      const running = new Running();
+      console.log(running);
     </script>
   </body>
 </html>
