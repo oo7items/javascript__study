@@ -140,10 +140,7 @@
       <div class="operations">
         <div class="operations__tab-container">
           <button
-            class="
-              btn
-              operations__tab operations__tab--1 operations__tab--active
-            "
+            class="btn operations__tab operations__tab--1 operations__tab--active"
             data-tab="1"
           >
             <span>01</span>Instant Transfers
@@ -156,11 +153,7 @@
           </button>
         </div>
         <div
-          class="
-            operations__content
-            operations__content--1
-            operations__content--active
-          "
+          class="operations__content operations__content--1 operations__content--active"
         >
           <div class="operations__icon operations__icon--1">
             <svg>
@@ -356,7 +349,43 @@
       </form>
     </div>
     <div class="overlay hidden"></div>
+    <script>
+      const h1 = document.querySelector('h1');
 
-    <script src="script.js"></script>
+      // Going downwards: child 向下:子
+      console.log(h1.querySelectorAll('.highlight')); // NodeList(2)
+      console.log(h1.childNodes); // NodeList(9)
+      console.log(h1.children);
+      h1.firstElementChild.style.color = 'white';
+      h1.lastElementChild.style.color = 'orangered';
+
+      // Going upwards: parents 向上:父母
+      console.log(h1.parentNode);
+      console.log(h1.parentElement);
+
+      h1.closest('.header').style.background = 'var(--gradient-secondary)';
+      // h1.querySelector('.highlight').style.display = 'none';
+      console.log(h1.querySelector('.highlight'));
+      h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+      // Going sideways: siblings 横向发展:兄弟姐妹
+      console.log(h1.previousElementSibling);
+      console.log(h1.nextElementSibling);
+
+      console.log(h1.previousSibling);
+      console.log(h1.nextSibling);
+
+      console.log(h1.parentElement.children);
+      [...h1.parentElement.children].forEach(function (el) {
+        if (el !== h1) el.style.transform = 'scale(0.5)';
+      });
+
+      console.log(document.body.parentNode, "is body's parent node"); // returns <html>
+      console.log(document.body.parentElement, "is body's parent element"); // returns <html>
+
+      var html = document.body.parentElement;
+      console.log(html.parentNode, "is html's parent node"); // returns document
+      console.log(html.parentElement, "is html's parent element"); // returns null
+    </script>
   </body>
 </html>
